@@ -1362,7 +1362,7 @@ async function submitModal() {
     document.getElementById('modalOk').style.display = 'block';
     setTimeout(closeModal, 3000);
   } catch (e) {
-    alert('Impossible d\\'envoyer la demande pour le moment. Réessayez dans quelques minutes.');
+    alert("Impossible d'envoyer la demande pour le moment. Réessayez dans quelques minutes.");
   } finally {
     btn.disabled = false;
     btn.textContent = 'Envoyer ma demande →';
