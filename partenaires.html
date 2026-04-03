@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAIRINO France - Espace Partenaire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --or: #F56400;
+  --or2: #FF7A1A;
+  --or-bg: rgba(245,100,0,0.08);
+  --or-bd: rgba(245,100,0,0.25);
+  --noir: #0A0A0A;
+  --dark: #111111;
+  --dark2: #1A1A1A;
+  --blanc: #FFFFFF;
+  --txt2: rgba(232,232,232,0.55);
+  --txt3: rgba(232,232,232,0.25);
+  --txt-dark: #4a4a4a;
+  --txt-dark-soft: #7a7a7a;
+  --r: 4px;
+  --r2: 10px;
+  --shor: 0 8px 32px rgba(245,100,0,0.3);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Barlow', sans-serif; background: var(--blanc); color: var(--dark); }
+
+#nav {
+  position: sticky; top: 0; z-index: 10;
+  height: 86px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 42px; background: var(--or); border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.nav-logo img { height: 56px; display: block; filter: invert(1) brightness(2); }
+.nav-back {
+  color: rgba(255,255,255,0.88); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.nav-back:hover { color: var(--blanc); }
+
+#partenaires { padding: 84px 42px; background: var(--blanc); }
+.partner-layout { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 420px; gap: 64px; align-items: start; }
+.s-eye {
+  display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--or);
+}
+.s-eye::before { content: ''; width: 20px; height: 2px; background: var(--or); }
+.s-h {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(36px, 5vw, 60px); line-height: 1.0; text-transform: uppercase;
+  margin-bottom: 18px; color: var(--dark);
+}
+.s-sub { font-size: 16px; font-weight: 400; line-height: 1.75; color: var(--txt-dark); margin-bottom: 0; }
+.perk-list { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; }
+.perk {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 16px 20px; background: #fafafa; border: 1px solid #e8e8e8;
+  border-radius: var(--r); transition: all 0.2s;
+}
+.perk:hover { background: var(--or-bg); border-color: var(--or-bd); }
+.perk-icon { font-size: 18px; min-width: 28px; }
+.perk-t { font-size: 14px; font-weight: 400; color: var(--txt-dark); line-height: 1.6; }
+.perk-t strong { color: var(--dark); font-weight: 700; }
+
+.login-panel { background: var(--dark2); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--r2); overflow: hidden; }
+.login-top { background: var(--or); padding: 22px 28px; }
+.login-top-h { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800; text-transform: uppercase; }
+.login-top-s { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+.login-body { padding: 28px; }
+.login-err {
+  display: none; background: rgba(220,50,50,0.12); border: 1px solid rgba(220,50,50,0.25);
+  border-radius: var(--r); padding: 10px 14px; font-size: 12px; color: #FF6B6B; margin-bottom: 16px;
+}
+.field { margin-bottom: 18px; }
+.field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--txt2); margin-bottom: 8px; }
+.field input {
+  width: 100%; padding: 11px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r); font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--blanc); outline: none;
+}
+.field input:focus { border-color: var(--or); }
+.btn-login-do {
+  width: 100%; padding: 13px; background: var(--or); border: none; border-radius: var(--r);
+  font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blanc); cursor: pointer; transition: all 0.2s;
+}
+.btn-login-do:hover { background: var(--or2); box-shadow: var(--shor); }
+.login-hint { text-align: center; margin-top: 14px; font-size: 11px; color: var(--txt3); }
+.login-hint a { color: var(--or); text-decoration: none; }
+
+#partnerDash { display: none; }
+#partnerDash.on { display: block; }
+#loginPanelWrap.off { display: none; }
+.dash-panel { background: var(--dark2); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--r2); overflow: hidden; }
+.dash-top { background: var(--or); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; }
+.dash-top-h { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 800; text-transform: uppercase; }
+.dash-level { font-size: 10px; font-weight: 700; background: rgba(0,0,0,0.2); padding: 3px 10px; border-radius: 100px; letter-spacing: 0.08em; }
+.dash-body { padding: 22px; }
+.dash-welcome { background: rgba(0,200,100,0.08); border: 1px solid rgba(0,200,100,0.2); border-radius: var(--r); padding: 10px 14px; font-size: 13px; color: #66FFAA; margin-bottom: 18px; }
+.ptable { width: 100%; border-collapse: collapse; font-size: 12px; }
+.ptable th { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--txt3); padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: left; }
+.ptable td { padding: 9px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.ptable tr:last-child td { border-bottom: none; }
+.td-pub { font-size: 11px; color: #777; text-decoration: line-through; }
+.td-par { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 800; color: var(--or); }
+.td-dis { display: inline-block; background: var(--or-bg); border: 1px solid var(--or-bd); border-radius: 100px; font-size: 9px; font-weight: 700; color: var(--or); padding: 2px 7px; }
+.btn-logout { margin-top: 14px; padding: 7px 14px; background: transparent; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r); font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600; color: var(--txt3); cursor: pointer; }
+.btn-logout:hover { border-color: #FF6B6B; color: #FF6B6B; }
+.ptable-note { font-size: 10px; color: var(--txt3); margin-top: 10px; line-height: 1.6; }
+
+/* Bas de page (meme banniere qu'index) */
+.foot-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11px; color: var(--txt3); background: #050505;
+  padding: 16px 42px;
+}
+.foot-social {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--txt2); text-decoration: none; font-size: 12px; font-weight: 500;
+  transition: color 0.2s;
+}
+.foot-social:hover { color: #0A66C2; }
+.foot-social svg { width: 16px; height: 16px; display: block; }
+
+@media (max-width: 1024px) {
+  .partner-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  #nav { padding: 0 20px; height: 78px; }
+  .nav-logo img { height: 48px; }
+  #partenaires { padding: 56px 20px; }
+  .foot-bottom { flex-direction: column; gap: 6px; text-align: center; padding: 16px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="FAIRINO France"></a>
+  <a href="index.html" class="nav-back">Retour au site</a>
+</nav>
+
+<section id="partenaires">
+  <div class="partner-layout">
+    <div>
+      <div class="s-eye">Programme partenaire</div>
+      <h1 class="s-h">Revendeurs &amp;<br>intégrateurs</h1>
+      <p class="s-sub">Rejoignez le réseau FAIRINO France. Accédez à des tarifs exclusifs, des outils dédiés et un accompagnement technique de niveau 2.</p>
+      <div class="perk-list">
+        <div class="perk"><div class="perk-icon">💰</div><div class="perk-t"><strong>Remises exclusives</strong> — Silver -15%, Gold -23%, Platinum -30% sur la grille publique.</div></div>
+        <div class="perk"><div class="perk-icon">📦</div><div class="perk-t"><strong>Stock démonstration</strong> — unités de démo à tarif coût pour vos présentations clients sur site.</div></div>
+        <div class="perk"><div class="perk-icon">🎓</div><div class="perk-t"><strong>Certification FAIRINO Integrator</strong> — formation certifiante incluse, reconnue sur tout le territoire.</div></div>
+        <div class="perk"><div class="perk-icon">🔧</div><div class="perk-t"><strong>Support technique niveau 2</strong> — ligne directe dédiée, réponse garantie sous 4h ouvrées.</div></div>
+        <div class="perk"><div class="perk-icon">📊</div><div class="perk-t"><strong>Portail configurateur</strong> — outils de devis, documentations et ressources marketing personnalisables.</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div id="loginPanelWrap">
+        <div class="login-panel">
+          <div class="login-top">
+            <div class="login-top-h">Connexion Partenaire</div>
+            <div class="login-top-s">Accédez à vos tarifs préférentiels</div>
+          </div>
+          <div class="login-body">
+            <div class="login-err" id="loginErr">Identifiants incorrects. Essayez : demo / FAIRINO2025</div>
+            <div class="field">
+              <label>Identifiant</label>
+              <input type="text" id="uid" placeholder="Email ou code partenaire">
+            </div>
+            <div class="field">
+              <label>Mot de passe</label>
+              <input type="password" id="pwd" placeholder="••••••••">
+            </div>
+            <button class="btn-login-do" onclick="doLogin()">Accéder à mon espace</button>
+            <div class="login-hint">Pas encore partenaire ? <a href="mailto:contact@lsmotion.fr">Nous contacter</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="partnerDash">
+        <div class="dash-panel">
+          <div class="dash-top">
+            <div class="dash-top-h" id="dashName">Espace Partenaire</div>
+            <span class="dash-level" id="dashLevel">Gold</span>
+          </div>
+          <div class="dash-body">
+            <div class="dash-welcome">Connecté - Tarifs confidentiels à usage interne uniquement</div>
+            <table class="ptable" id="partnerTable">
+              <thead>
+                <tr>
+                  <th>Modèle</th>
+                  <th>Public HT</th>
+                  <th>Tarif partenaire</th>
+                  <th>Remise</th>
+                </tr>
+              </thead>
+              <tbody id="priceRows"></tbody>
+            </table>
+            <p class="ptable-note">Tarifs HT. Remises supplémentaires pour volumes >= 5 unités sur demande.<br>Contact Account Manager : <a href="mailto:contact@lsmotion.fr" style="color:var(--or);">contact@lsmotion.fr</a></p>
+            <button class="btn-logout" onclick="doLogout()">Se déconnecter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="foot-bottom">
+  <span>© 2026 FAIRINO France. Tous droits réservés.</span>
+  <a href="https://fr.linkedin.com/company/fairino-france" target="_blank" rel="noopener" class="foot-social" aria-label="LinkedIn FAIRINO France">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.03-1.85-3.03-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+    </svg>
+    LinkedIn FAIRINO France
+  </a>
+  <span>🇫🇷 Distribution officielle France métropolitaine</span>
+</div>
+
+<script>
+const PARTNER_ACCOUNTS = [
+  { id: "demo", pass: "FAIRINO2025", name: "Démo Partenaire", level: "Gold" },
+  { id: "partenaire1", pass: "motdepasse1", name: "Société Exemple 1", level: "Silver" },
+  { id: "partenaire2", pass: "motdepasse2", name: "Société Exemple 2", level: "Platinum" }
+];
+
+const PARTNER_PRICES = {
+  Silver: {
+    FR3: { public: "4 600 €", partner: "3 910 €", discount: "-15%" },
+    FR5: { public: "4 800 €", partner: "4 080 €", discount: "-15%" },
+    FR10: { public: "10 500 €", partner: "8 925 €", discount: "-15%" },
+    FR16: { public: "10 500 €", partner: "8 925 €", discount: "-15%" },
+    FR20: { public: "14 700 €", partner: "12 495 €", discount: "-15%" },
+    FR30: { public: "14 700 €", partner: "12 495 €", discount: "-15%" }
+  },
+  Gold: {
+    FR3: { public: "4 600 €", partner: "3 500 €", discount: "-24%" },
+    FR5: { public: "4 800 €", partner: "3 700 €", discount: "-23%" },
+    FR10: { public: "10 500 €", partner: "8 100 €", discount: "-23%" },
+    FR16: { public: "10 500 €", partner: "8 100 €", discount: "-23%" },
+    FR20: { public: "14 700 €", partner: "11 200 €", discount: "-24%" },
+    FR30: { public: "14 700 €", partner: "11 000 €", discount: "-25%" }
+  },
+  Platinum: {
+    FR3: { public: "4 600 €", partner: "3 200 €", discount: "-30%" },
+    FR5: { public: "4 800 €", partner: "3 360 €", discount: "-30%" },
+    FR10: { public: "10 500 €", partner: "7 350 €", discount: "-30%" },
+    FR16: { public: "10 500 €", partner: "7 350 €", discount: "-30%" },
+    FR20: { public: "14 700 €", partner: "10 290 €", discount: "-30%" },
+    FR30: { public: "14 700 €", partner: "10 290 €", discount: "-30%" }
+  }
+};
+
+function doLogin() {
+  const uid = document.getElementById('uid').value.trim();
+  const pwd = document.getElementById('pwd').value.trim();
+  const err = document.getElementById('loginErr');
+  const acct = PARTNER_ACCOUNTS.find(a => a.id === uid && a.pass === pwd);
+
+  if (!acct) {
+    err.style.display = 'block';
+    return;
+  }
+
+  err.style.display = 'none';
+  document.getElementById('loginPanelWrap').classList.add('off');
+  document.getElementById('partnerDash').classList.add('on');
+  document.getElementById('dashName').textContent = acct.name;
+  document.getElementById('dashLevel').textContent = acct.level;
+
+  const prices = PARTNER_PRICES[acct.level] || PARTNER_PRICES.Gold;
+  const tbody = document.getElementById('priceRows');
+  tbody.innerHTML = Object.entries(prices).map(([model, p]) =>
+    `<tr>
+      <td style="font-weight:700;font-size:13px;">${model}</td>
+      <td class="td-pub">${p.public}</td>
+      <td class="td-par">${p.partner}</td>
+      <td><span class="td-dis">${p.discount}</span></td>
+    </tr>`
+  ).join('');
+}
+
+function doLogout() {
+  document.getElementById('loginPanelWrap').classList.remove('off');
+  document.getElementById('partnerDash').classList.remove('on');
+  document.getElementById('uid').value = '';
+  document.getElementById('pwd').value = '';
+  document.getElementById('loginErr').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const pwd = document.getElementById('pwd');
+  if (pwd) {
+    pwd.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doLogin();
+    });
+  }
+});
+</script>
+
+</body>
+</html>

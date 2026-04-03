@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAIRINO France — Robots Collaboratifs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════ VARIABLES ════════════ */
+:root {
+  --or:    #F56400;
+  --or2:   #FF7A1A;
+  --or3:   #D45500;
+  --or-bg: rgba(245,100,0,0.08);
+  --or-bd: rgba(245,100,0,0.25);
+  --noir:  #0A0A0A;
+  --dark:  #111111;
+  --dark2: #1A1A1A;
+  --dark3: #222222;
+  --blanc: #FFFFFF;
+  --gris1: #F5F5F5;
+  --gris2: #E8E8E8;
+  --gris3: #BBBBBB;
+  --gris4: #777777;
+  --gris5: #444444;
+  --txt:   #E8E8E8;
+  --txt2:  rgba(232,232,232,0.55);
+  --txt3:  rgba(232,232,232,0.25);
+  --r:     4px;
+  --r2:    10px;
+  --r3:    16px;
+  --sh:    0 4px 30px rgba(0,0,0,0.15);
+  --shor:  0 8px 32px rgba(245,100,0,0.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Barlow', sans-serif; background: var(--blanc); color: var(--dark); overflow-x: hidden; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--or); border-radius: 2px; }
+
+/* ════════════ NAV ════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 96px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px;
+  background: transparent;
+  transition: background 0.35s, box-shadow 0.35s;
+}
+#nav.scrolled {
+  background: rgba(10,10,10,0.97);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+}
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-logo img { height: 78px; display: block; filter: none; }
+.nav-menu { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-menu > li > a {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--txt2); text-decoration: none; transition: color 0.2s;
+}
+.nav-menu > li > a:hover { color: var(--or); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.btn-ghost-nav {
+  padding: 7px 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--r);
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--txt2); background: transparent; cursor: pointer;
+  transition: all 0.2s; text-decoration: none;
+}
+.btn-ghost-nav:hover { border-color: var(--or); color: var(--or); }
+.btn-or-nav {
+  padding: 8px 20px; border: none; border-radius: var(--r);
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--blanc); background: var(--or); cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-or-nav:hover { background: var(--or2); box-shadow: var(--shor); }
+
+/* ════════════ HERO ════════════ */
+#hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; overflow: hidden;
+  background: var(--noir);
+}
+.hero-img {
+  position: absolute; inset: 0;
+  background: url('images/cobots/Front.png') center/cover no-repeat;
+}
+.hero-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.6) 60%, rgba(10,10,10,0.2) 100%);
+}
+.hero-or-line {
+  position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%; background: var(--or); z-index: 2;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 120px 80px 80px;
+  max-width: 780px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--or); margin-bottom: 28px;
+}
+.hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--or); }
+.hero-h1 {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(56px, 7vw, 96px); line-height: 0.93;
+  letter-spacing: -0.01em; text-transform: uppercase; color: var(--blanc);
+  margin-bottom: 32px;
+}
+.hero-h1 em { font-style: normal; color: var(--or); }
+.hero-sub {
+  font-size: 17px; font-weight: 300; color: var(--txt2); line-height: 1.7;
+  max-width: 500px; margin-bottom: 52px;
+}
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-or {
+  padding: 15px 36px; border: none; border-radius: var(--r);
+  font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blanc); background: var(--or); cursor: pointer;
+  transition: all 0.25s; text-decoration: none; display: inline-block;
+}
+.btn-or:hover { background: var(--or2); box-shadow: var(--shor); transform: translateY(-2px); }
+.btn-outline-white {
+  padding: 14px 34px; border: 1.5px solid rgba(255,255,255,0.3); border-radius: var(--r);
+  font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blanc); background: transparent; cursor: pointer;
+  transition: all 0.25s; text-decoration: none; display: inline-block;
+}
+.btn-outline-white:hover { border-color: var(--or); color: var(--or); transform: translateY(-2px); }
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 80px; z-index: 2;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--txt3); animation: scrollblink 3s ease-in-out infinite;
+}
+.hero-scroll-line { width: 40px; height: 1px; background: var(--or); }
+@keyframes scrollblink { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+/* ════════════ TICKER ════════════ */
+.ticker {
+  background: var(--or); padding: 11px 0; overflow: hidden; position: relative; z-index: 1;
+}
+.ticker-inner {
+  display: flex; gap: 0; animation: tick 30s linear infinite; white-space: nowrap;
+}
+.tick-item {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--blanc); padding: 0 40px; opacity: 0.9;
+  display: flex; align-items: center; gap: 10px;
+}
+.tick-item::after { content: '◆'; font-size: 7px; opacity: 0.5; }
+@keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ════════════ STATS BAR ════════════ */
+#stats { background: var(--dark); padding: 60px 80px; }
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.05); border-radius: var(--r2);
+  overflow: hidden; max-width: 1200px; margin: 0 auto;
+}
+.stat-box {
+  background: var(--dark2); padding: 40px 32px; text-align: center;
+  transition: background 0.2s;
+}
+.stat-box:hover { background: var(--or-bg); }
+.stat-v {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 900;
+  color: var(--or); line-height: 1; margin-bottom: 6px;
+}
+.stat-k {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--txt2);
+}
+
+/* ════════════ SECTION BASE ════════════ */
+.s { padding: 96px 80px; }
+.s-inner { max-width: 1200px; margin: 0 auto; }
+.s-eye {
+  display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--or);
+}
+.s-eye::before { content: ''; width: 20px; height: 2px; background: var(--or); }
+.s-h {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(36px, 5vw, 60px); line-height: 1.0; letter-spacing: -0.01em;
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.s-sub {
+  font-size: 16px; font-weight: 300; line-height: 1.75; max-width: 600px; margin-bottom: 60px;
+}
+/* Dark variants */
+.s-dark { background: var(--dark); }
+.s-dark .s-h { color: var(--blanc); }
+.s-dark .s-sub { color: var(--txt2); }
+.s-noir { background: var(--noir); }
+.s-noir .s-h { color: var(--blanc); }
+.s-noir .s-sub { color: var(--txt2); }
+.s-gris { background: var(--gris1); }
+
+/* ════════════ COBOTS SECTION ════════════ */
+.cobots-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 2px;
+  background: var(--gris2); border: 1px solid var(--gris2); border-radius: var(--r2); overflow: hidden;
+}
+.cobot-card {
+  background: var(--blanc); display: flex; flex-direction: column;
+  transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden;
+}
+.cobot-card:hover { background: #FAFAFA; }
+.cobot-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--or); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+}
+.cobot-card:hover::after { transform: scaleX(1); }
+.cobot-img {
+  width: 100%; height: 200px; object-fit: cover; display: block;
+  transition: transform 0.4s;
+}
+.cobot-card:hover .cobot-img { transform: scale(1.03); }
+.cobot-body { padding: 24px 24px 20px; flex: 1; display: flex; flex-direction: column; }
+.cobot-badge-wrap { position: absolute; top: 12px; left: 12px; }
+.cb-badge {
+  display: inline-block; padding: 3px 9px; border-radius: 100px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.cb-new   { background: #E8F5E9; color: #2E7D32; }
+.cb-pop   { background: #FFF3E0; color: var(--or); border: 1px solid #FFCC80; }
+.cb-soon  { background: var(--gris2); color: var(--gris4); }
+.cobot-model {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 900;
+  text-transform: uppercase; color: var(--dark); line-height: 1; margin-bottom: 3px;
+}
+.cobot-range {
+  font-size: 13px; font-weight: 600; color: var(--or); letter-spacing: 0.04em;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.cobot-specs {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-bottom: 18px;
+  background: var(--gris1); border-radius: var(--r); overflow: hidden;
+}
+.cs { padding: 10px 8px; text-align: center; border-right: 1px solid var(--gris2); }
+.cs:last-child { border-right: none; }
+.cs-k { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gris4); margin-bottom: 2px; }
+.cs-v { font-size: 12px; font-weight: 700; color: var(--dark); }
+.cobot-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--gris2); }
+.cobot-price {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 900; color: var(--or); line-height: 1;
+}
+.cobot-price-sub { font-size: 11px; color: var(--gris3); font-weight: 400; }
+.cobot-price-soon { font-size: 14px; color: var(--gris3); font-weight: 400; font-style: italic; }
+.btn-cobot {
+  padding: 8px 18px; background: var(--or); border: none; border-radius: var(--r);
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--blanc);
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-cobot:hover { background: var(--or3); box-shadow: var(--shor); }
+.btn-cobot-soon {
+  padding: 8px 18px; background: transparent; border: 1px solid var(--gris2); border-radius: var(--r);
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris4);
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-cobot-soon:hover { border-color: var(--or); color: var(--or); }
+.price-note {
+  background: #FFF3E0; border: 1px solid #FFCC80; border-radius: var(--r);
+  padding: 14px 20px; font-size: 13px; color: #7B3F00; margin-top: 28px; max-width: 1200px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+
+/* ════════════ GAMME LINEAIRE ════════════ */
+.gamme-img { width: 100%; border-radius: var(--r2); display: block; margin-bottom: 48px; }
+
+/* ════════════ APPLICATIONS ════════════ */
+.app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.app-card {
+  position: relative; overflow: hidden; border-radius: var(--r2); cursor: pointer;
+  aspect-ratio: 4/3;
+}
+.app-card img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s;
+}
+.app-card:hover img { transform: scale(1.06); }
+.app-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%);
+  transition: opacity 0.3s;
+}
+.app-label {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
+  padding: 24px 22px 20px;
+}
+.app-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--or); margin-bottom: 4px;
+}
+.app-title {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800;
+  text-transform: uppercase; color: var(--blanc); line-height: 1;
+}
+.app-arrow {
+  margin-top: 10px; width: 30px; height: 2px; background: var(--or);
+  position: relative; transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.app-arrow::after {
+  content: ''; position: absolute; right: 0; top: -3px;
+  border-left: 6px solid var(--or); border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+}
+.app-card:hover .app-arrow { transform: scaleX(1); }
+
+/* ════════════ EQUIP COMPAT ════════════ */
+.equip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+.equip-card {
+  background: var(--dark2); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--r2);
+  overflow: hidden; transition: all 0.3s;
+}
+.equip-card:hover { border-color: var(--or-bd); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+.equip-img { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform 0.4s; }
+.equip-card:hover .equip-img { transform: scale(1.04); }
+.equip-body { padding: 20px; }
+.equip-cat { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--or); margin-bottom: 6px; }
+.equip-name { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; text-transform: uppercase; color: var(--blanc); margin-bottom: 8px; }
+.equip-desc { font-size: 12px; font-weight: 300; color: var(--txt2); line-height: 1.6; }
+.equip-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.etag {
+  padding: 3px 9px; background: var(--dark3); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px; font-size: 10px; color: var(--gris3); font-weight: 500;
+}
+
+/* ════════════ WHY SECTION ════════════ */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.04); overflow: hidden; border-radius: var(--r2); }
+.why-item {
+  background: var(--dark2); padding: 40px 32px; position: relative; overflow: hidden;
+  transition: background 0.25s;
+}
+.why-item:hover { background: var(--dark3); }
+.why-item::before {
+  content: attr(data-n); position: absolute; top: 16px; right: 20px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 72px; font-weight: 900;
+  color: rgba(255,255,255,0.03); line-height: 1;
+}
+.why-icon { font-size: 30px; margin-bottom: 20px; }
+.why-title { font-family: 'Barlow', sans-serif; font-size: 17px; font-weight: 700; color: var(--blanc); margin-bottom: 12px; }
+.why-desc { font-size: 13px; font-weight: 300; color: var(--txt2); line-height: 1.7; }
+.why-or { width: 28px; height: 3px; background: var(--or); border-radius: 2px; margin-bottom: 20px; }
+
+/* ════════════ ABOUT BANNER ════════════ */
+#about {
+  position: relative; min-height: 420px; overflow: hidden;
+  display: flex; align-items: center;
+}
+.about-bg {
+  position: absolute; inset: 0;
+  background: url('images/about-bg.jpg') center/cover no-repeat;
+}
+.about-bg::after { content: ''; position: absolute; inset: 0; background: rgba(10,10,10,0.88); }
+.about-content { position: relative; z-index: 1; padding: 80px; max-width: 700px; }
+.about-h { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 48px; text-transform: uppercase; color: var(--blanc); line-height: 1.0; margin-bottom: 20px; }
+.about-h em { font-style: normal; color: var(--or); }
+.about-sub { font-size: 15px; font-weight: 300; color: var(--txt2); line-height: 1.7; max-width: 480px; margin-bottom: 36px; }
+
+/* ════════════ SOCIETE ════════════ */
+#societe { background: var(--blanc); }
+.soc-wrap { max-width: 980px; }
+.soc-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--or); margin: 24px 0 12px;
+}
+.soc-p {
+  font-size: 15px; font-weight: 400; color: #4a4a4a; line-height: 1.75; max-width: 900px;
+}
+.soc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.soc-list li {
+  font-size: 14px; font-weight: 400; color: #4a4a4a; line-height: 1.6;
+  padding-left: 16px; position: relative;
+}
+.soc-list li::before { content: '•'; position: absolute; left: 0; top: 0; color: var(--or); }
+.soc-link {
+  display: inline-block; margin-top: 18px; color: var(--dark);
+  text-decoration: none; border-bottom: 1px solid var(--or-bd);
+}
+.soc-link:hover { color: var(--or); border-bottom-color: var(--or); }
+
+/* ════════════ PARTNERS ════════════ */
+#partenaires { background: var(--noir); padding: 96px 80px; }
+.partner-layout { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 420px; gap: 64px; align-items: start; }
+.perk-list { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; }
+.perk {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 16px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r); transition: all 0.2s;
+}
+.perk:hover { background: var(--or-bg); border-color: var(--or-bd); }
+.perk-icon { font-size: 18px; min-width: 28px; }
+.perk-t { font-size: 14px; font-weight: 300; color: var(--txt2); line-height: 1.6; }
+.perk-t strong { color: var(--blanc); font-weight: 600; }
+
+/* Login */
+.login-panel {
+  background: var(--dark2); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--r2); overflow: hidden;
+}
+.login-top {
+  background: var(--or); padding: 22px 28px;
+}
+.login-top-h { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800; text-transform: uppercase; color: var(--blanc); letter-spacing: 0.04em; }
+.login-top-s { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 300; margin-top: 2px; }
+.login-body { padding: 28px; }
+.field { margin-bottom: 18px; }
+.field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--txt2); margin-bottom: 8px; }
+.field input {
+  width: 100%; padding: 11px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r); font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--blanc); outline: none; transition: border-color 0.2s;
+}
+.field input:focus { border-color: var(--or); }
+.field input::placeholder { color: rgba(255,255,255,0.2); }
+.login-err {
+  display: none; background: rgba(220,50,50,0.12); border: 1px solid rgba(220,50,50,0.25);
+  border-radius: var(--r); padding: 10px 14px; font-size: 12px; color: #FF6B6B; margin-bottom: 16px;
+}
+.btn-login-do {
+  width: 100%; padding: 13px; background: var(--or); border: none; border-radius: var(--r);
+  font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blanc); cursor: pointer; transition: all 0.2s;
+}
+.btn-login-do:hover { background: var(--or2); box-shadow: var(--shor); }
+.login-hint { text-align: center; margin-top: 14px; font-size: 11px; color: var(--txt3); }
+.login-hint a { color: var(--or); text-decoration: none; }
+
+/* Dashboard */
+#partnerDash { display: none; }
+#partnerDash.on { display: block; }
+#loginPanelWrap.off { display: none; }
+.dash-panel { background: var(--dark2); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--r2); overflow: hidden; }
+.dash-top { background: var(--or); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; }
+.dash-top-h { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 800; text-transform: uppercase; color: var(--blanc); letter-spacing: 0.04em; }
+.dash-level { font-size: 10px; font-weight: 700; background: rgba(0,0,0,0.2); color: var(--blanc); padding: 3px 10px; border-radius: 100px; letter-spacing: 0.08em; }
+.dash-body { padding: 22px; }
+.dash-welcome { background: rgba(0,200,100,0.08); border: 1px solid rgba(0,200,100,0.2); border-radius: var(--r); padding: 10px 14px; font-size: 13px; color: #66FFAA; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+.ptable { width: 100%; border-collapse: collapse; font-size: 12px; }
+.ptable th { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--txt3); padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: left; }
+.ptable td { padding: 9px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+.ptable tr:last-child td { border-bottom: none; }
+.ptable tr:hover td { background: var(--or-bg); }
+.td-pub { font-size: 11px; color: var(--gris4); text-decoration: line-through; }
+.td-par { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 800; color: var(--or); }
+.td-dis { display: inline-block; background: var(--or-bg); border: 1px solid var(--or-bd); border-radius: 100px; font-size: 9px; font-weight: 700; color: var(--or); padding: 2px 7px; }
+.btn-logout { margin-top: 14px; padding: 7px 14px; background: transparent; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r); font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600; color: var(--txt3); cursor: pointer; transition: all 0.2s; }
+.btn-logout:hover { border-color: #FF6B6B; color: #FF6B6B; }
+.ptable-note { font-size: 10px; color: var(--txt3); margin-top: 10px; line-height: 1.6; }
+
+/* ════════════ SUPPORT ════════════ */
+.sup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-bottom: 48px; }
+.sup-card {
+  background: var(--dark2); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--r2);
+  padding: 28px 24px; text-decoration: none; color: inherit; transition: all 0.25s; display: block;
+}
+.sup-card:hover { border-color: var(--or-bd); transform: translateY(-3px); background: var(--dark3); }
+.sup-icon { font-size: 26px; margin-bottom: 14px; }
+.sup-name { font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; color: var(--blanc); margin-bottom: 8px; }
+.sup-desc { font-size: 12px; font-weight: 300; color: var(--txt2); line-height: 1.65; margin-bottom: 14px; }
+.sup-link { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--or); }
+.contact-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: rgba(255,255,255,0.04); border-radius: var(--r2); overflow: hidden; }
+.ci {
+  background: var(--dark2); padding: 24px; display: flex; align-items: center; gap: 16px;
+  text-decoration: none; color: inherit; transition: background 0.2s;
+}
+.ci:hover { background: var(--or-bg); }
+.ci-ico { width: 40px; height: 40px; background: var(--or-bg); border: 1px solid var(--or-bd); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.ci-k { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--txt3); margin-bottom: 3px; }
+.ci-v { font-size: 14px; font-weight: 600; color: var(--blanc); }
+
+/* ════════════ FAQ ════════════ */
+.faq-wrap { max-width: 800px; margin-top: 64px; }
+.faq-h { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 800; text-transform: uppercase; color: var(--blanc); margin-bottom: 24px; }
+.faq-i { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.faq-q-btn {
+  width: 100%; padding: 18px 0; background: transparent; border: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 600;
+  color: var(--txt); cursor: pointer; text-align: left;
+}
+.faq-q-btn:hover { color: var(--or); }
+.faq-arr {
+  width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,0.05);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--or); transition: all 0.3s; flex-shrink: 0;
+}
+.faq-i.open .faq-arr { transform: rotate(180deg); background: var(--or); color: var(--blanc); }
+.faq-ans { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.faq-ans-inner { padding: 0 0 18px; font-size: 13px; font-weight: 300; color: var(--txt2); line-height: 1.75; }
+
+/* ════════════ FOOTER ════════════ */
+footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padding: 64px 80px 36px; }
+.foot-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 36px; }
+.foot-logo { height: 36px; margin-bottom: 18px; display: block; filter: invert(1) brightness(2); }
+.foot-tag { font-size: 12px; font-weight: 300; color: var(--txt2); line-height: 1.7; max-width: 240px; }
+.foot-col-h { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--txt3); margin-bottom: 16px; }
+.foot-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.foot-links a { font-size: 12px; color: var(--txt2); text-decoration: none; font-weight: 300; transition: color 0.2s; }
+.foot-links a:hover { color: var(--or); }
+.foot-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: var(--txt3); }
+.foot-social {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--txt2); text-decoration: none; font-size: 12px; font-weight: 500;
+  transition: color 0.2s;
+}
+.foot-social:hover { color: #0A66C2; }
+.foot-social svg { width: 16px; height: 16px; display: block; }
+
+/* ════════════ MODAL DEVIS ════════════ */
+.modal-bg {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
+  z-index: 300; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.modal-bg.show { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: var(--dark2); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r2);
+  width: 90%; max-width: 480px; overflow: hidden;
+  transform: translateY(20px); transition: transform 0.25s; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+}
+.modal-bg.show .modal-box { transform: translateY(0); }
+.modal-head { background: var(--or); padding: 20px 28px; display: flex; align-items: flex-start; justify-content: space-between; }
+.modal-head-h { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800; text-transform: uppercase; color: var(--blanc); letter-spacing: 0.04em; }
+.modal-head-s { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; font-weight: 300; }
+.modal-close { background: transparent; border: none; color: rgba(255,255,255,0.6); font-size: 20px; cursor: pointer; padding: 0; line-height: 1; transition: color 0.2s; }
+.modal-close:hover { color: var(--blanc); }
+.modal-content { padding: 28px; }
+.mf { margin-bottom: 16px; }
+.mf label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--txt2); margin-bottom: 7px; }
+.mf input, .mf textarea {
+  width: 100%; padding: 11px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r); font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--blanc); outline: none; transition: border-color 0.2s;
+}
+.mf input:focus, .mf textarea:focus { border-color: var(--or); }
+.mf input::placeholder, .mf textarea::placeholder { color: rgba(255,255,255,0.2); }
+.mf textarea { resize: vertical; }
+.btn-submit { width: 100%; padding: 13px; background: var(--or); border: none; border-radius: var(--r); font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blanc); cursor: pointer; transition: all 0.2s; margin-top: 8px; }
+.btn-submit:hover { background: var(--or2); box-shadow: var(--shor); }
+.modal-success { display: none; text-align: center; padding: 40px 28px; }
+.ms-icon { font-size: 48px; margin-bottom: 12px; }
+.ms-h { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 800; text-transform: uppercase; color: var(--blanc); margin-bottom: 8px; }
+.ms-s { font-size: 14px; font-weight: 300; color: var(--txt2); }
+
+/* ════════════ ANIM ════════════ */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ════════════ RESPONSIVE ════════════ */
+@media(max-width: 1024px) {
+  #nav { padding: 0 28px; }
+  .nav-logo img { height: 64px; }
+  .nav-menu { display: none; }
+  .hero-content { padding: 100px 40px 60px; }
+  .s { padding: 64px 40px; }
+  #stats { padding: 48px 40px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .app-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .partner-layout { grid-template-columns: 1fr; }
+  #partenaires { padding: 64px 40px; }
+  footer { padding: 48px 40px 32px; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+  .about-content { padding: 60px 40px; }
+}
+@media(max-width: 640px) {
+  #nav { height: 84px; }
+  .nav-logo img { height: 56px; }
+  .hero-content { padding: 90px 24px 48px; }
+  .s { padding: 48px 24px; }
+  #stats { padding: 36px 24px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .app-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  footer { padding: 40px 24px 28px; }
+  .foot-grid { grid-template-columns: 1fr; }
+  .about-content { padding: 48px 24px; }
+  #partenaires { padding: 48px 24px; }
+  .hero-scroll { display: none; }
+  .foot-bottom { flex-direction: column; gap: 6px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ NAVIGATION ════════════ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="images/logo-orange.png" alt="FAIRINO France">
+  </a>
+  <ul class="nav-menu">
+    <li><a href="#cobots">Produits & Prix</a></li>
+    <li><a href="#applications">Applications</a></li>
+    <li><a href="#equipements">Équipements</a></li>
+    <li><a href="#societe">Société</a></li>
+    <li><a href="partenaires.html">Partenaires</a></li>
+    <li><a href="#support">Support</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="partenaires.html" class="btn-ghost-nav">Espace partenaire</a>
+    <button class="btn-or-nav" onclick="openModal()">Demander un devis</button>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section id="hero">
+  <div class="hero-img"></div>
+  <div class="hero-or-line"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Robots Collaboratifs — France</div>
+    <h1 class="hero-h1">
+      Automatisez<br>
+      <em>plus vite.</em><br>
+      Produisez mieux.
+    </h1>
+    <p class="hero-sub">
+      FAIRINO France distribue les cobots industriels les plus accessibles du marché. Livrés en France, opérationnels en quelques heures, garantis 3 ans.
+    </p>
+    <div class="hero-btns">
+      <a href="#cobots" class="btn-or">Voir les produits & prix</a>
+      <button class="btn-outline-white" onclick="openModal()">Demander une démo gratuite</button>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Défiler
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner">
+    <span class="tick-item">Livraison France incluse</span>
+    <span class="tick-item">Certifié ISO 10218</span>
+    <span class="tick-item">Répétabilité ±0.02 mm</span>
+    <span class="tick-item">6 modèles — de 3 à 30 kg</span>
+    <span class="tick-item">Installation en 2 heures</span>
+    <span class="tick-item">Garantie 3 ans</span>
+    <span class="tick-item">Support 7j/7</span>
+    <span class="tick-item">Livraison France incluse</span>
+    <span class="tick-item">Certifié ISO 10218</span>
+    <span class="tick-item">Répétabilité ±0.02 mm</span>
+    <span class="tick-item">6 modèles — de 3 à 30 kg</span>
+    <span class="tick-item">Installation en 2 heures</span>
+    <span class="tick-item">Garantie 3 ans</span>
+    <span class="tick-item">Support 7j/7</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-box">
+      <div class="stat-v">±0.02</div>
+      <div class="stat-k">Répétabilité (mm)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-v">30 kg</div>
+      <div class="stat-k">Charge max</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-v">1 200+</div>
+      <div class="stat-k">Clients actifs</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-v">3 ans</div>
+      <div class="stat-k">Garantie complète</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ COBOTS & PRIX ════════════ -->
+<section class="s s-gris" id="cobots">
+  <div class="s-inner">
+    <div class="s-eye">Gamme complète</div>
+    <h2 class="s-h">Nos robots collaboratifs<br>& leurs prix</h2>
+    <p class="s-sub">6 modèles disponibles immédiatement. Tous les prix incluent la livraison en France métropolitaine.</p>
+
+    <!-- Lineup banner -->
+    <img src="images/gamme-complete.png" alt="Gamme FAIRINO FR3 à FR30" class="gamme-img reveal">
+
+    <div class="cobots-grid reveal">
+
+      <!-- FR3 -->
+      <div class="cobot-card" onclick="openModal('FR3')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-pop">Best-seller</span></div>
+        <img src="images/cobots/fr3.jpg" alt="FAIRINO FR3" class="cobot-img">
+        <div class="cobot-body">
+          <div class="cobot-model">FR3</div>
+          <div class="cobot-range">3 KGS · 622 MM</div>
+          <div class="cobot-specs">
+            <div class="cs"><div class="cs-k">Charge</div><div class="cs-v">3 kg</div></div>
+            <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">622 mm</div></div>
+            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.02 mm</div></div>
+          </div>
+          <div class="cobot-footer">
+            <div>
+              <div class="cobot-price">4 600 €</div>
+              <div class="cobot-price-sub">HT · Livré en France</div>
+            </div>
+            <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR3')">Devis</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FR5 -->
+      <div class="cobot-card" onclick="openModal('FR5')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-new">Nouveau</span></div>
+        <img src="images/cobots/fr5.jpg" alt="FAIRINO FR5" class="cobot-img">
+        <div class="cobot-body">
+          <div class="cobot-model">FR5</div>
+          <div class="cobot-range">5 KGS · 922 MM</div>
+          <div class="cobot-specs">
+            <div class="cs"><div class="cs-k">Charge</div><div class="cs-v">5 kg</div></div>
+            <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">922 mm</div></div>
+            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.02 mm</div></div>
+          </div>
+          <div class="cobot-footer">
+            <div>
+              <div class="cobot-price">4 800 €</div>
+              <div class="cobot-price-sub">HT · Livré en France</div>
+            </div>
+            <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR5')">Devis</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAIRINO-FR5-WML — En cours d'arrivage -->
+      <div class="cobot-card" style="opacity:0.72; pointer-events:none;">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-soon">En cours d'arrivage</span></div>
+        <img src="images/cobots/fr5.jpg" alt="FAIRINO-FR5-WML" class="cobot-img" style="filter:grayscale(45%);">
+        <div class="cobot-body">
+          <div class="cobot-model" style="color:#999;">FR5-WML</div>
+          <div class="cobot-range" style="color:#bbb;">5 KGS · 1 900 MM</div>
+          <div class="cobot-specs">
+            <div class="cs"><div class="cs-k">Charge utile</div><div class="cs-v">5 kg</div></div>
+            <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">1 900 mm</div></div>
+            <div class="cs"><div class="cs-k">Répétabilité</div><div class="cs-v">±0.1 mm</div></div>
+          </div>
+          <div class="cobot-footer">
+            <div>
+              <div class="cobot-price-soon">En cours d'arrivage</div>
+            </div>
+            <button class="btn-cobot-soon" style="pointer-events:all;" onclick="openModal('FAIRINO-FR5-WML - Préinscription')">M\'alerter</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FR10 -->
+      <div class="cobot-card" onclick="openModal('FR10')">
+        <img src="images/cobots/fr10.jpg" alt="FAIRINO FR10" class="cobot-img">
+        <div class="cobot-body">
+          <div class="cobot-model">FR10</div>
+          <div class="cobot-range">10 KGS · 1 400 MM</div>
+          <div class="cobot-specs">
+            <div class="cs"><div class="cs-k">Charge</div><div class="cs-v">10 kg</div></div>
+            <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">1 400 mm</div></div>
+            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.05 mm</div></div>
+          </div>
+          <div class="cobot-footer">
+            <div>
+              <div class="cobot-price">10 500 €</div>
+              <div class="cobot-price-sub">HT · Livré en France</div>
+            </div>
+            <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR10')">Devis</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FR16 -->
+      <div class="cobot-card" onclick="openModal('FR16')">
+        <img src="images/cobots/fr16.jpg" alt="FAIRINO FR16" class="cobot-img">
+        <div class="cobot-body">
+          <div class="cobot-model">FR16</div>
+          <div class="cobot-range">16 KGS · 1 034 MM</div>
+          <div class="cobot-specs">
+            <div class="cs"><div class="cs-k">Charge</div><div class="cs-v">16 kg</div></div>
+            <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">1 034 mm</div></div>
+            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.05 mm</div></div>
+          </div>
+          <div class="cobot-footer">
+            <div>
+              <div class="cobot-price">10 500 €</div>
+              <div class="cobot-price-sub">HT · Livré en France</div>
+            </div>
+            <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR16')">Devis</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FR20 -->
+      <div class="cobot-card" onclick="openModal('FR20')">
+        <img src="images/cobots/fr20.jpg" alt="FAIRINO FR20" class="cobot-img">
+        <div class="cobot-body">
+          <div class="cobot-model">FR20</div>
+          <div class="cobot-range">20 KGS · 1 854 MM</div>
+          <div class="cobot-specs">
+            <div class="cs"><div class="cs-k">Charge</div><div class="cs-v">20 kg</div></div>
+            <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">1 854 mm</div></div>
+            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.1 mm</div></div>
+          </div>
+          <div class="cobot-footer">
+            <div>
+              <div class="cobot-price">14 700 €</div>
+              <div class="cobot-price-sub">HT · Livré en France</div>
+            </div>
+            <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR20')">Devis</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FR30 -->
+      <div class="cobot-card" onclick="openModal('FR30')">
+        <img src="images/cobots/fr30.jpg" alt="FAIRINO FR30" class="cobot-img">
+        <div class="cobot-body">
+          <div class="cobot-model">FR30</div>
+          <div class="cobot-range">30 KGS · 1 403 MM</div>
+          <div class="cobot-specs">
+            <div class="cs"><div class="cs-k">Charge</div><div class="cs-v">30 kg</div></div>
+            <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">1 403 mm</div></div>
+            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.1 mm</div></div>
+          </div>
+          <div class="cobot-footer">
+            <div>
+              <div class="cobot-price">14 700 €</div>
+              <div class="cobot-price-sub">HT · Livré en France</div>
+            </div>
+            <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR30')">Devis</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FR30L — Coming soon -->
+      <div class="cobot-card" style="opacity:0.65; pointer-events:none;">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-soon">Prochainement</span></div>
+        <img src="images/cobots/fr30l.jpg" alt="FAIRINO FR30L" class="cobot-img" style="filter:grayscale(60%);">
+        <div class="cobot-body">
+          <div class="cobot-model" style="color:#999;">FR30L</div>
+          <div class="cobot-range" style="color:#bbb;">30 KGS · Longue portée</div>
+          <div class="cobot-specs">
+            <div class="cs"><div class="cs-k">Charge</div><div class="cs-v">30 kg</div></div>
+            <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">TBD</div></div>
+            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.1 mm</div></div>
+          </div>
+          <div class="cobot-footer">
+            <div>
+              <div class="cobot-price-soon">Disponible prochainement</div>
+            </div>
+            <button class="btn-cobot-soon" style="pointer-events:all;" onclick="openModal('FR30L - Préinscription')">M\'alerter</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end cobots-grid -->
+
+    <div class="price-note reveal">
+      <span>ℹ️</span>
+      <span>Prix indicatifs HT, livraison France métropolitaine incluse. Pour les prix DOM-TOM, Europe, remises volume (≥ 5 unités) et options d'accessoires, contactez notre équipe commerciale.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ APPLICATIONS ════════════ -->
+<section class="s s-dark" id="applications">
+  <div class="s-inner">
+    <div class="s-eye">Applications industrielles</div>
+    <h2 class="s-h" style="color:var(--blanc);">Solutions pour<br>tous les secteurs</h2>
+    <p class="s-sub" style="color:var(--txt2);">Des cobots FAIRINO opèrent dans toutes les industries. Découvrez les principales applications adaptées à vos besoins.</p>
+    <div class="app-grid reveal">
+      <div class="app-card">
+        <img src="images/applications/soudage.jpg" alt="Soudage robotisé">
+        <div class="app-label">
+          <div class="app-tag">Application</div>
+          <div class="app-title">Soudage</div>
+          <div class="app-arrow"></div>
+        </div>
+      </div>
+      <div class="app-card">
+        <img src="images/applications/palettisation.jpg" alt="Palettisation">
+        <div class="app-label">
+          <div class="app-tag">Application</div>
+          <div class="app-title">Palettisation</div>
+          <div class="app-arrow"></div>
+        </div>
+      </div>
+      <div class="app-card">
+        <img src="images/applications/assemblage.jpg" alt="Assemblage de précision">
+        <div class="app-label">
+          <div class="app-tag">Application</div>
+          <div class="app-title">Assemblage</div>
+          <div class="app-arrow"></div>
+        </div>
+      </div>
+      <div class="app-card">
+        <img src="images/applications/vissage.jpg" alt="Vissage automatisé">
+        <div class="app-label">
+          <div class="app-tag">Application</div>
+          <div class="app-title">Vissage auto.</div>
+          <div class="app-arrow"></div>
+        </div>
+      </div>
+      <div class="app-card">
+        <img src="images/applications/controle-qualite.jpg" alt="Contrôle qualité vision">
+        <div class="app-label">
+          <div class="app-tag">Application</div>
+          <div class="app-title">Contrôle Qualité</div>
+          <div class="app-arrow"></div>
+        </div>
+      </div>
+      <div class="app-card">
+        <img src="images/applications/manutention.jpg" alt="Manutention industrielle">
+        <div class="app-label">
+          <div class="app-tag">Application</div>
+          <div class="app-title">Manutention</div>
+          <div class="app-arrow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ ÉQUIPEMENTS COMPATIBLES ════════════ -->
+<section class="s s-noir" id="equipements">
+  <div class="s-inner">
+    <div class="s-eye">Écosystème FAIRINO</div>
+    <h2 class="s-h" style="color:var(--blanc);">Équipements<br>compatibles</h2>
+    <p class="s-sub" style="color:var(--txt2);">Étendez les capacités de vos cobots avec des accessoires certifiés FAIRINO. Intégration plug & play, configuration en quelques minutes.</p>
+    <div class="equip-grid reveal">
+
+      <div class="equip-card">
+        <img src="images/equipments/pince-robotique.jpg" alt="Pince robotique" class="equip-img">
+        <div class="equip-body">
+          <div class="equip-cat">Préhension</div>
+          <div class="equip-name">Pince Robotique</div>
+          <div class="equip-desc">Pinces pneumatiques, électriques et magnétiques. Ouverture adaptative, compatible tous modèles FR.</div>
+          <div class="equip-tags">
+            <span class="etag">FR3 · FR5</span><span class="etag">FR10+</span><span class="etag">Plug & Play</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <img src="images/equipments/vision-3d.jpg" alt="Vision 3D" class="equip-img">
+        <div class="equip-body">
+          <div class="equip-cat">Vision industrielle</div>
+          <div class="equip-name">Vision 3D</div>
+          <div class="equip-desc">Caméra 3D intégrée pour la reconnaissance de pièces, le tri désordonné et le contrôle qualité automatisé.</div>
+          <div class="equip-tags">
+            <span class="etag">Tous modèles</span><span class="etag">IA embarquée</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <img src="images/equipments/capteur-force.jpg" alt="Capteur de force-couple" class="equip-img">
+        <div class="equip-body">
+          <div class="equip-cat">Capteur</div>
+          <div class="equip-name">Capteur Force/Couple</div>
+          <div class="equip-desc">6 axes de mesure force-couple. Idéal pour l'assemblage avec insertion, le polissage et les tâches de précision tactile.</div>
+          <div class="equip-tags">
+            <span class="etag">FR5+</span><span class="etag">6 DoF</span><span class="etag">±200N</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <img src="images/equipments/agv.jpg" alt="AGV AMR mobile" class="equip-img">
+        <div class="equip-body">
+          <div class="equip-cat">Mobilité</div>
+          <div class="equip-name">AGV / AMR</div>
+          <div class="equip-desc">Plateforme mobile autonome pour cobot nomade. Navigation LIDAR, intégration native avec les cobots FAIRINO.</div>
+          <div class="equip-tags">
+            <span class="etag">FR3 · FR5 · FR10</span><span class="etag">LIDAR</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <img src="images/equipments/rail-lineaire.jpg" alt="Rail linéaire" class="equip-img">
+        <div class="equip-body">
+          <div class="equip-cat">Axe supplémentaire</div>
+          <div class="equip-name">Rail Linéaire</div>
+          <div class="equip-desc">Axe 7 motorisé pour étendre la portée de travail jusqu'à 4m. Compatible avec tous les modèles FR10 et supérieurs.</div>
+          <div class="equip-tags">
+            <span class="etag">FR10+</span><span class="etag">Axe 7</span><span class="etag">4m max</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equip-card">
+        <img src="images/equipments/brides-outil.jpg" alt="Brides et outils" class="equip-img">
+        <div class="equip-body">
+          <div class="equip-cat">Outillage</div>
+          <div class="equip-name">Brides & Outils</div>
+          <div class="equip-desc">Changeurs d'outil rapides, brides ISO 9409, ventouses, électroaimants. Catalogue complet de fin de bras.</div>
+          <div class="equip-tags">
+            <span class="etag">Tous modèles</span><span class="etag">ISO 9409</span><span class="etag">Quick-change</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <button class="btn-or" onclick="openModal('Catalogue équipements')">Demander le catalogue complet</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ POURQUOI FAIRINO ════════════ -->
+<section class="s s-dark" id="pourquoi">
+  <div class="s-inner">
+    <div class="s-eye">Nos engagements</div>
+    <h2 class="s-h" style="color:var(--blanc);">Pourquoi choisir<br>FAIRINO France ?</h2>
+    <div class="why-grid reveal">
+      <div class="why-item" data-n="01">
+        <div class="why-or"></div>
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Déploiement en 2 heures</div>
+        <div class="why-desc">Installation mécanique express et interface FAIRINO Studio intuitive. Vos opérateurs maîtrisent les bases en une journée, sans expertise préalable.</div>
+      </div>
+      <div class="why-item" data-n="02">
+        <div class="why-or"></div>
+        <div class="why-icon">🎯</div>
+        <div class="why-title">Précision ±0.02 mm</div>
+        <div class="why-desc">Répétabilité industrielle de référence sur les modèles FR3 et FR5. Idéal pour l'assemblage de précision, le vissage et le contrôle qualité.</div>
+      </div>
+      <div class="why-item" data-n="03">
+        <div class="why-or"></div>
+        <div class="why-icon">🛡️</div>
+        <div class="why-title">Sécurité certifiée</div>
+        <div class="why-desc">Conformes ISO 10218 et ISO/TS 15066. Détection de force avancée pour une collaboration humain-robot certifiée et sécurisée.</div>
+      </div>
+      <div class="why-item" data-n="04">
+        <div class="why-or"></div>
+        <div class="why-icon">🔗</div>
+        <div class="why-title">Connectivité industrielle</div>
+        <div class="why-desc">EtherCAT, PROFINET, Modbus TCP, EtherNet/IP, ROS/ROS2. SDK Python & C++ open-source. Intégration native avec les systèmes MES/SCADA.</div>
+      </div>
+      <div class="why-item" data-n="05">
+        <div class="why-or"></div>
+        <div class="why-icon">💰</div>
+        <div class="why-title">Meilleur ROI du marché</div>
+        <div class="why-desc">À partir de 4 600 € HT livré. ROI typique en moins de 18 mois. Financement LLD disponible pour démarrer sans investissement initial lourd.</div>
+      </div>
+      <div class="why-item" data-n="06">
+        <div class="why-or"></div>
+        <div class="why-icon">🇫🇷</div>
+        <div class="why-title">Support local en français</div>
+        <div class="why-desc">Équipe technique francophone dédiée. Intervention sur site sous 48h ouvrées. Documentation et formations 100% en français.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ ABOUT BANNER ════════════ -->
+<section id="about">
+  <div class="about-bg"></div>
+  <div class="about-content">
+    <div class="s-eye">FAIRINO France</div>
+    <h2 class="about-h">L'automatisation<br><em>accessible à tous.</em></h2>
+    <p class="about-sub">Distributeur officiel FAIRINO en France, nous accompagnons les industriels — PME comme grands groupes — dans leur transition vers l'automatisation collaborative. Une équipe d'experts, un catalogue complet, un support réactif.</p>
+    <button class="btn-or" onclick="openModal('Contact commercial')">Parler à un expert</button>
+  </div>
+</section>
+
+<!-- ════════════ PARTENAIRES ════════════ -->
+<section id="partenaires">
+  <div class="partner-layout">
+    <div>
+      <div class="s-eye">Programme partenaire</div>
+      <h2 class="s-h" style="color:var(--blanc);">Espace revendeurs<br>&amp; intégrateurs</h2>
+      <p class="s-sub" style="color:var(--txt2); margin-bottom:26px;">La connexion partenaire et les tarifs confidentiels sont désormais disponibles sur une page dédiée pour une navigation plus claire.</p>
+      <a href="partenaires.html" class="btn-or">Accéder à l'espace partenaire</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ SUPPORT ════════════ -->
+<section class="s s-dark" id="support">
+  <div class="s-inner">
+    <div class="s-eye">Support & Ressources</div>
+    <h2 class="s-h" style="color:var(--blanc);">Un accompagnement<br>complet à chaque étape</h2>
+    <p class="s-sub" style="color:var(--txt2);">Documentation technique, formations certifiantes, hotline dédiée et interventions sur site. Tout ce qu'il faut pour réussir votre automatisation.</p>
+
+    <div class="sup-grid reveal">
+      <a href="https://fairino-doc-en.readthedocs.io" target="_blank" class="sup-card">
+        <div class="sup-icon">📚</div>
+        <div class="sup-name">Documentation technique</div>
+        <div class="sup-desc">Manuels d'installation, guides de programmation, référence API complète et notes d'application pour tous les modèles.</div>
+        <div class="sup-link">Accéder →</div>
+      </a>
+      <a href="#" class="sup-card">
+        <div class="sup-icon">🎓</div>
+        <div class="sup-name">Formations & Certifications</div>
+        <div class="sup-desc">Parcours opérateur (1j), intégrateur (3j), certification FAIRINO Expert. En présentiel ou distanciel.</div>
+        <div class="sup-link">Voir le catalogue →</div>
+      </a>
+      <a href="#" class="sup-card">
+        <div class="sup-icon">🔄</div>
+        <div class="sup-name">Mises à jour firmware</div>
+        <div class="sup-desc">Dernières versions du firmware et de FAIRINO Studio avec notes de version détaillées.</div>
+        <div class="sup-link">Télécharger →</div>
+      </a>
+      <a href="#" class="sup-card">
+        <div class="sup-icon">🛠️</div>
+        <div class="sup-name">Diagnostic en ligne</div>
+        <div class="sup-desc">Analysez les journaux de votre cobot et obtenez des recommandations automatiques en temps réel.</div>
+        <div class="sup-link">Lancer le diagnostic →</div>
+      </a>
+      <a href="#" class="sup-card">
+        <div class="sup-icon">🧩</div>
+        <div class="sup-name">Pièces détachées</div>
+        <div class="sup-desc">Boutique de pièces certifiées FAIRINO. Livraison express J+1 en France. Moteurs, réducteurs, brides.</div>
+        <div class="sup-link">Commander →</div>
+      </a>
+      <a href="#" class="sup-card">
+        <div class="sup-icon">💬</div>
+        <div class="sup-name">Communauté FAIRINO</div>
+        <div class="sup-desc">Forum utilisateurs, partage de programmes et retours d'expérience. 2 000+ membres actifs.</div>
+        <div class="sup-link">Rejoindre →</div>
+      </a>
+    </div>
+
+    <div class="contact-row reveal">
+      <a href="#" class="ci">
+        <div class="ci-ico">🏢</div>
+        <div><div class="ci-k">Société</div><div class="ci-v">FAIRINO FRANCE<br>By LSMotion</div></div>
+      </a>
+      <a href="https://maps.google.com/?q=3+bis+avenue+du+stade,+77400+Lagny-sur-Marne" target="_blank" rel="noopener" class="ci">
+        <div class="ci-ico">📍</div>
+        <div><div class="ci-k">Adresse</div><div class="ci-v">3 bis avenue du stade<br>77400 Lagny-sur-Marne</div></div>
+      </a>
+      <a href="tel:+33972199257" class="ci">
+        <div class="ci-ico">📞</div>
+        <div><div class="ci-k">Téléphone</div><div class="ci-v">(33) 9.72.19.92.57</div></div>
+      </a>
+      <a href="mailto:contact@fairino-cobot.com" class="ci">
+        <div class="ci-ico">✉️</div>
+        <div><div class="ci-k">Email</div><div class="ci-v">contact@fairino-cobot.com</div></div>
+      </a>
+      <a href="#" class="ci">
+        <div class="ci-ico">🕒</div>
+        <div><div class="ci-k">Horaires</div><div class="ci-v">Lun. au Ven. : 8:00 - 17:00</div></div>
+      </a>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-wrap reveal">
+      <div class="faq-h">Questions fréquentes</div>
+      <div class="faq-i">
+        <button class="faq-q-btn" onclick="faq(this)">Combien de temps prend l'installation d'un cobot FAIRINO ? <span class="faq-arr">▼</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">L'installation mécanique prend entre 30 minutes et 2 heures. La mise en service via FAIRINO Studio, la configuration des zones de sécurité et la programmation de la première tâche sont accessibles sans expertise préalable. La majorité de nos clients sont opérationnels dès le premier jour.</div></div>
+      </div>
+      <div class="faq-i">
+        <button class="faq-q-btn" onclick="faq(this)">Les robots sont-ils livrés avec contrôleur et logiciel ? <span class="faq-arr">▼</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">Oui. Chaque FAIRINO est livré avec son contrôleur dédié, les câbles d'alimentation et le logiciel FAIRINO Studio (Windows/Linux). La tablette de programmation tactile et les accessoires de fin de bras sont disponibles en option sur devis.</div></div>
+      </div>
+      <div class="faq-i">
+        <button class="faq-q-btn" onclick="faq(this)">Quelle est la garantie incluse ? <span class="faq-arr">▼</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">3 ans pièces et main-d'œuvre sur tous les modèles. Des contrats de maintenance préventive annuels sont disponibles pour planifier vos entretiens et obtenir des délais d'intervention prioritaires sur site.</div></div>
+      </div>
+      <div class="faq-i">
+        <button class="faq-q-btn" onclick="faq(this)">Quels protocoles de communication sont supportés ? <span class="faq-arr">▼</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">EtherCAT, PROFINET, Modbus TCP/RTU, EtherNet/IP, DeviceNet. Compatible ROS/ROS2 nativement. SDK Python & C++ open-source disponible. Intégration certifiée avec les systèmes de vision Cognex, Basler et Keyence.</div></div>
+      </div>
+      <div class="faq-i">
+        <button class="faq-q-btn" onclick="faq(this)">Proposez-vous des solutions de financement ? <span class="faq-arr">▼</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">Oui, nous proposons des solutions de location longue durée (LLD) et de crédit-bail en partenariat avec des organismes spécialisés en équipements industriels. Contactez notre équipe commerciale pour un plan de financement personnalisé.</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════ SOCIETE ════════════ -->
+<section class="s" id="societe">
+  <div class="s-inner soc-wrap">
+    <div class="s-eye">Information sur la société</div>
+    <h2 class="s-h">LSMotion, représentant<br>FAIRINO France</h2>
+    <p class="soc-p">Fairino France est représentée depuis 2023 par la société LSMotion.</p>
+    <p class="soc-p">LSMotion est le distributeur officiel du cobot FAIRINO en France.</p>
+    <p class="soc-p">Spécialisée en mécatronique, LSMotion assure le développement commercial, le support technique et le service client pour l'ensemble de la gamme de cobots FAIRINO sur tout le territoire français. Notre mission : rendre la robotique collaborative accessible, performante et bien accompagnée, partout en France.</p>
+
+    <div class="soc-title">Notre savoir-faire</div>
+    <ul class="soc-list">
+      <li>Automatisation des process industriels</li>
+      <li>Contrôle de mouvement et motorisation</li>
+      <li>Intégration de systèmes robotiques</li>
+      <li>Déploiement de solutions sur mesure en environnements contraints</li>
+    </ul>
+
+    <div class="soc-title">Pourquoi choisir LSMotion ?</div>
+    <ul class="soc-list">
+      <li>Une maîtrise complète des technologies mécatroniques et robotiques</li>
+      <li>Un réseau national pour vous accompagner partout en France</li>
+      <li>Un support client réactif, assuré par des experts de terrain</li>
+      <li>Une approche personnalisée pour chaque secteur d'activité (industrie, agroalimentaire, électronique, etc.)</li>
+    </ul>
+
+    <a href="https://www.lsmotion.fr" target="_blank" rel="noopener" class="soc-link">Notre site pour les autres activités de LSMotion : www.lsmotion.fr</a>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <img src="images/logo.png" alt="FAIRINO France" class="foot-logo">
+      <div class="foot-tag">Robots collaboratifs haute performance. Distribution officielle FAIRINO en France. Livrés clé en main, garantis 3 ans.</div>
+    </div>
+    <div>
+      <div class="foot-col-h">Produits</div>
+      <ul class="foot-links">
+        <li><a href="#cobots">FR3 — 4 600 € HT</a></li>
+        <li><a href="#cobots">FR5 — 4 800 € HT</a></li>
+        <li><a href="#cobots">FR10 — 10 500 € HT</a></li>
+        <li><a href="#cobots">FR16 — 10 500 € HT</a></li>
+        <li><a href="#cobots">FR20 — 14 700 € HT</a></li>
+        <li><a href="#cobots">FR30 — 14 700 € HT</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-h">Ressources</div>
+      <ul class="foot-links">
+        <li><a href="https://fairino-doc-en.readthedocs.io" target="_blank">Documentation</a></li>
+        <li><a href="#support">Formations</a></li>
+        <li><a href="#equipements">Équipements</a></li>
+        <li><a href="#support">Pièces détachées</a></li>
+        <li><a href="#support">Communauté</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-h">Société</div>
+      <ul class="foot-links">
+        <li><a href="#">À propos</a></li>
+        <li><a href="partenaires.html">Devenir partenaire</a></li>
+        <li><a href="#">Carrières</a></li>
+        <li><a href="#support">Contact</a></li>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">CGV</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 FAIRINO France. Tous droits réservés.</span>
+    <a href="https://fr.linkedin.com/company/fairino-france" target="_blank" rel="noopener" class="foot-social" aria-label="LinkedIn FAIRINO France">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.03-1.85-3.03-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+      </svg>
+      LinkedIn FAIRINO France
+    </a>
+    <span>🇫🇷 Distribution officielle France métropolitaine</span>
+  </div>
+</footer>
+
+<!-- ════════════ MODAL DEVIS ════════════ -->
+<div class="modal-bg" id="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <div class="modal-head-h">Demande de devis</div>
+        <div class="modal-head-s" id="modalSub">Réponse garantie sous 24h ouvrées</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-content">
+      <div id="modalForm">
+        <div class="mf"><label>Nom & Prénom</label><input type="text" placeholder="Jean Dupont"></div>
+        <div class="mf"><label>Société</label><input type="text" placeholder="Votre entreprise"></div>
+        <div class="mf"><label>Email professionnel</label><input type="email" placeholder="jean@entreprise.fr"></div>
+        <div class="mf"><label>Téléphone</label><input type="tel" placeholder="+33 6 00 00 00 00"></div>
+        <div class="mf"><label>Produit(s) / Sujet</label><input type="text" id="modalProd" placeholder="ex: FR5 × 2, ou question technique"></div>
+        <div class="mf"><label>Message</label><textarea rows="3" placeholder="Décrivez votre application et vos besoins..."></textarea></div>
+        <button class="btn-submit" onclick="submitModal()">Envoyer ma demande →</button>
+      </div>
+      <div class="modal-success" id="modalOk">
+        <div class="ms-icon">✅</div>
+        <div class="ms-h">Demande envoyée !</div>
+        <div class="ms-s">Notre équipe commerciale vous contactera dans les 24 heures ouvrées.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ JAVASCRIPT ════════════ -->
+<script>
+// ── NAV scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── MODAL DEVIS
+function openModal(prod) {
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('modalForm').style.display = 'block';
+  document.getElementById('modalOk').style.display = 'none';
+  if (prod) {
+    document.getElementById('modalProd').value = prod;
+    document.getElementById('modalSub').textContent = 'Devis pour : ' + prod;
+  } else {
+    document.getElementById('modalProd').value = '';
+    document.getElementById('modalSub').textContent = 'Réponse garantie sous 24h ouvrées';
+  }
+}
+function closeModal() { document.getElementById('modal').classList.remove('show'); }
+function submitModal() {
+  document.getElementById('modalForm').style.display = 'none';
+  document.getElementById('modalOk').style.display = 'block';
+  setTimeout(closeModal, 3000);
+}
+document.getElementById('modal').addEventListener('click', e => { if(e.target === document.getElementById('modal')) closeModal(); });
+
+// ── FAQ
+function faq(btn) {
+  const item = btn.parentElement;
+  const ans = item.querySelector('.faq-ans');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-i.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-ans').style.maxHeight = '0';
+  });
+  if (!open) {
+    item.classList.add('open');
+    ans.style.maxHeight = ans.scrollHeight + 'px';
+  }
+}
+
+// ── SCROLL REVEAL
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+</script>
+
+</body>
+</html>
