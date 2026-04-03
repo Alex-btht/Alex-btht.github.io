@@ -1342,7 +1342,7 @@ async function submitModal() {
   btn.textContent = 'Envoi en cours...';
 
   try {
-    await fetch('https://formsubmit.co/ajax/alexandre.berthault29@gmail.com', {
+    const res = await fetch('https://formsubmit.co/ajax/alexandre.berthault29@gmail.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
@@ -1358,11 +1358,17 @@ async function submitModal() {
       })
     });
 
+    const data = await res.json().catch(() => ({}));
+    const ok = data && (data.success === true || data.success === 'true');
+    if (!res.ok || !ok) {
+      throw new Error(data.message || 'Le service de formulaire a refusé la demande.');
+    }
+
     document.getElementById('modalForm').style.display = 'none';
     document.getElementById('modalOk').style.display = 'block';
     setTimeout(closeModal, 3000);
   } catch (e) {
-    alert("Impossible d'envoyer la demande pour le moment. Réessayez dans quelques minutes.");
+    alert(e.message || "Impossible d'envoyer la demande pour le moment. Réessayez dans quelques minutes.");
   } finally {
     btn.disabled = false;
     btn.textContent = 'Envoyer ma demande →';
