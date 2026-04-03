@@ -45,7 +45,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--blanc); color: var(-
 /* ════════════ NAV ════════════ */
 #nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  height: 96px;
+  height: 150px;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 56px;
   background: transparent;
@@ -57,7 +57,12 @@ body { font-family: 'Barlow', sans-serif; background: var(--blanc); color: var(-
   box-shadow: 0 2px 20px rgba(0,0,0,0.4);
 }
 .nav-logo { display: flex; align-items: center; text-decoration: none; }
-.nav-logo img { height: 78px; display: block; filter: none; }
+.nav-logo-img {
+  display: block;
+  height: 120px;
+  width: auto;
+  filter: none;
+}
 .nav-menu { display: flex; align-items: center; gap: 36px; list-style: none; }
 .nav-menu > li > a {
   font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
@@ -564,8 +569,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
 
 /* ════════════ RESPONSIVE ════════════ */
 @media(max-width: 1024px) {
-  #nav { padding: 0 28px; }
-  .nav-logo img { height: 64px; }
+  #nav { padding: 0 28px; height: 130px; }
+  .nav-logo-img { height: 100px; }
   .nav-menu { display: none; }
   .hero-content { padding: 100px 40px 60px; }
   .s { padding: 64px 40px; }
@@ -580,8 +585,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
   .about-content { padding: 60px 40px; }
 }
 @media(max-width: 640px) {
-  #nav { height: 84px; }
-  .nav-logo img { height: 56px; }
+  #nav { height: 105px; }
+  .nav-logo-img { height: 76px; }
   .hero-content { padding: 90px 24px 48px; }
   .s { padding: 48px 24px; }
   #stats { padding: 36px 24px; }
@@ -602,7 +607,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
 <!-- ════════════ NAVIGATION ════════════ -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img src="images/logo-orange.png" alt="FAIRINO France">
+    <img src="images/logo-nav-transparent.png" alt="FAIRINO" class="nav-logo-img">
   </a>
   <ul class="nav-menu">
     <li><a href="#cobots">Produits & Prix</a></li>
@@ -1030,37 +1035,37 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
     <div class="why-grid reveal">
       <div class="why-item" data-n="01">
         <div class="why-or"></div>
-        <div class="why-icon">⚡</div>
+        <div class="why-icon"></div>
         <div class="why-title">Déploiement en 2 heures</div>
         <div class="why-desc">Installation mécanique express et interface FAIRINO Studio intuitive. Vos opérateurs maîtrisent les bases en une journée, sans expertise préalable.</div>
       </div>
       <div class="why-item" data-n="02">
         <div class="why-or"></div>
-        <div class="why-icon">🎯</div>
+        <div class="why-icon"></div>
         <div class="why-title">Précision ±0.02 mm</div>
         <div class="why-desc">Répétabilité industrielle de référence sur les modèles FR3 et FR5. Idéal pour l'assemblage de précision, le vissage et le contrôle qualité.</div>
       </div>
       <div class="why-item" data-n="03">
         <div class="why-or"></div>
-        <div class="why-icon">🛡️</div>
+        <div class="why-icon"></div>
         <div class="why-title">Sécurité certifiée</div>
         <div class="why-desc">Conformes ISO 10218 et ISO/TS 15066. Détection de force avancée pour une collaboration humain-robot certifiée et sécurisée.</div>
       </div>
       <div class="why-item" data-n="04">
         <div class="why-or"></div>
-        <div class="why-icon">🔗</div>
+        <div class="why-icon"></div>
         <div class="why-title">Connectivité industrielle</div>
         <div class="why-desc">EtherCAT, PROFINET, Modbus TCP, EtherNet/IP, ROS/ROS2. SDK Python & C++ open-source. Intégration native avec les systèmes MES/SCADA.</div>
       </div>
       <div class="why-item" data-n="05">
         <div class="why-or"></div>
-        <div class="why-icon">💰</div>
+        <div class="why-icon"></div>
         <div class="why-title">Meilleur ROI du marché</div>
         <div class="why-desc">À partir de 4 600 € HT livré. ROI typique en moins de 18 mois. Financement LLD disponible pour démarrer sans investissement initial lourd.</div>
       </div>
       <div class="why-item" data-n="06">
         <div class="why-or"></div>
-        <div class="why-icon">🇫🇷</div>
+        <div class="why-icon"></div>
         <div class="why-title">Support local en français</div>
         <div class="why-desc">Équipe technique francophone dédiée. Intervention sur site sous 48h ouvrées. Documentation et formations 100% en français.</div>
       </div>
@@ -1100,37 +1105,37 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
 
     <div class="sup-grid reveal">
       <a href="https://fairino-doc-en.readthedocs.io" target="_blank" class="sup-card">
-        <div class="sup-icon">📚</div>
+        <div class="sup-icon"></div>
         <div class="sup-name">Documentation technique</div>
         <div class="sup-desc">Manuels d'installation, guides de programmation, référence API complète et notes d'application pour tous les modèles.</div>
         <div class="sup-link">Accéder →</div>
       </a>
       <a href="#" class="sup-card">
-        <div class="sup-icon">🎓</div>
+        <div class="sup-icon"></div>
         <div class="sup-name">Formations & Certifications</div>
         <div class="sup-desc">Parcours opérateur (1j), intégrateur (3j), certification FAIRINO Expert. En présentiel ou distanciel.</div>
         <div class="sup-link">Voir le catalogue →</div>
       </a>
       <a href="#" class="sup-card">
-        <div class="sup-icon">🔄</div>
+        <div class="sup-icon"></div>
         <div class="sup-name">Mises à jour firmware</div>
         <div class="sup-desc">Dernières versions du firmware et de FAIRINO Studio avec notes de version détaillées.</div>
         <div class="sup-link">Télécharger →</div>
       </a>
       <a href="#" class="sup-card">
-        <div class="sup-icon">🛠️</div>
+        <div class="sup-icon"></div>
         <div class="sup-name">Diagnostic en ligne</div>
         <div class="sup-desc">Analysez les journaux de votre cobot et obtenez des recommandations automatiques en temps réel.</div>
         <div class="sup-link">Lancer le diagnostic →</div>
       </a>
       <a href="#" class="sup-card">
-        <div class="sup-icon">🧩</div>
+        <div class="sup-icon"></div>
         <div class="sup-name">Pièces détachées</div>
         <div class="sup-desc">Boutique de pièces certifiées FAIRINO. Livraison express J+1 en France. Moteurs, réducteurs, brides.</div>
         <div class="sup-link">Commander →</div>
       </a>
       <a href="#" class="sup-card">
-        <div class="sup-icon">💬</div>
+        <div class="sup-icon"></div>
         <div class="sup-name">Communauté FAIRINO</div>
         <div class="sup-desc">Forum utilisateurs, partage de programmes et retours d'expérience. 2 000+ membres actifs.</div>
         <div class="sup-link">Rejoindre →</div>
@@ -1278,20 +1283,20 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
         <div class="modal-head-s" id="modalSub">Réponse garantie sous 24h ouvrées</div>
       </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-content">
-      <div id="modalForm">
-        <div class="mf"><label>Nom & Prénom</label><input type="text" placeholder="Jean Dupont"></div>
-        <div class="mf"><label>Société</label><input type="text" placeholder="Votre entreprise"></div>
-        <div class="mf"><label>Email professionnel</label><input type="email" placeholder="jean@entreprise.fr"></div>
-        <div class="mf"><label>Téléphone</label><input type="tel" placeholder="+33 6 00 00 00 00"></div>
-        <div class="mf"><label>Produit(s) / Sujet</label><input type="text" id="modalProd" placeholder="ex: FR5 × 2, ou question technique"></div>
-        <div class="mf"><label>Message</label><textarea rows="3" placeholder="Décrivez votre application et vos besoins..."></textarea></div>
-        <button class="btn-submit" onclick="submitModal()">Envoyer ma demande →</button>
       </div>
-      <div class="modal-success" id="modalOk">
-        <div class="ms-icon">✅</div>
-        <div class="ms-h">Demande envoyée !</div>
+      <div class="modal-content">
+        <div id="modalForm">
+        <div class="mf"><label>Nom & Prénom</label><input type="text" id="modalName" placeholder="Jean Dupont"></div>
+        <div class="mf"><label>Société</label><input type="text" id="modalCompany" placeholder="Votre entreprise"></div>
+        <div class="mf"><label>Email professionnel</label><input type="email" id="modalEmail" placeholder="jean@entreprise.fr"></div>
+        <div class="mf"><label>Téléphone</label><input type="tel" id="modalPhone" placeholder="+33 6 00 00 00 00"></div>
+        <div class="mf"><label>Produit(s) / Sujet</label><input type="text" id="modalProd" placeholder="ex: FR5 × 2, ou question technique"></div>
+        <div class="mf"><label>Message</label><textarea rows="3" id="modalMessage" placeholder="Décrivez votre application et vos besoins..."></textarea></div>
+        <button class="btn-submit" id="modalSubmitBtn" onclick="submitModal()">Envoyer ma demande →</button>
+        </div>
+        <div class="modal-success" id="modalOk">
+          <div class="ms-icon">✅</div>
+          <div class="ms-h">Demande envoyée !</div>
         <div class="ms-s">Notre équipe commerciale vous contactera dans les 24 heures ouvrées.</div>
       </div>
     </div>
@@ -1319,10 +1324,49 @@ function openModal(prod) {
   }
 }
 function closeModal() { document.getElementById('modal').classList.remove('show'); }
-function submitModal() {
-  document.getElementById('modalForm').style.display = 'none';
-  document.getElementById('modalOk').style.display = 'block';
-  setTimeout(closeModal, 3000);
+async function submitModal() {
+  const name = document.getElementById('modalName').value.trim();
+  const email = document.getElementById('modalEmail').value.trim();
+  const company = document.getElementById('modalCompany').value.trim();
+  const phone = document.getElementById('modalPhone').value.trim();
+  const subject = document.getElementById('modalProd').value.trim();
+  const message = document.getElementById('modalMessage').value.trim();
+  const btn = document.getElementById('modalSubmitBtn');
+
+  if (!name || !email || !subject || !message) {
+    alert('Merci de remplir au minimum : Nom, Email, Sujet et Message.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  try {
+    await fetch('https://formsubmit.co/ajax/alexandre.berthault29@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Nouvelle demande FAIRINO - ${subject}`,
+        _template: 'table',
+        _captcha: 'false',
+        nom: name,
+        societe: company,
+        email: email,
+        telephone: phone,
+        sujet: subject,
+        message: message
+      })
+    });
+
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalOk').style.display = 'block';
+    setTimeout(closeModal, 3000);
+  } catch (e) {
+    alert('Impossible d\\'envoyer la demande pour le moment. Réessayez dans quelques minutes.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Envoyer ma demande →';
+  }
 }
 document.getElementById('modal').addEventListener('click', e => { if(e.target === document.getElementById('modal')) closeModal(); });
 
