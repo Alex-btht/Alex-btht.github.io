@@ -379,14 +379,20 @@ body { font-family: 'Barlow', sans-serif; background: var(--blanc); color: var(-
 
 /* ════════════ ABOUT BANNER ════════════ */
 #about {
-  position: relative; min-height: 420px; overflow: hidden;
+  position: relative; min-height: 440px; overflow: hidden;
   display: flex; align-items: center;
 }
 .about-bg {
   position: absolute; inset: 0;
-  background: url('images/about-bg.jpg') center/cover no-repeat;
+  background: url('images/about-bg.jpg') center center / cover no-repeat;
+  background-color: #0e0e0e;
 }
-.about-bg::after { content: ''; position: absolute; inset: 0; background: rgba(10,10,10,0.88); }
+.about-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 55%, rgba(0,0,0,0.28) 100%);
+}
 .about-content { position: relative; z-index: 1; padding: 80px; max-width: 700px; }
 .about-h { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 48px; text-transform: uppercase; color: var(--blanc); line-height: 1.0; margin-bottom: 20px; }
 .about-h em { font-style: normal; color: var(--or); }
@@ -595,6 +601,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
   #partenaires { padding: 64px 40px; }
   footer { padding: 48px 40px 32px; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
+  #about { min-height: 380px; }
   .about-content { padding: 60px 40px; }
 }
 @media(max-width: 640px) {
@@ -608,6 +615,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
   .why-grid { grid-template-columns: 1fr; }
   footer { padding: 40px 24px 28px; }
   .foot-grid { grid-template-columns: 1fr; }
+  #about { min-height: 320px; }
   .about-content { padding: 48px 24px; }
   #partenaires { padding: 48px 24px; }
   .hero-scroll { display: none; }
@@ -747,7 +755,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           <div class="cobot-specs">
             <div class="cs"><div class="cs-k">Charge</div><div class="cs-v">3 kg</div></div>
             <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">922 mm</div></div>
-            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.02 mm</div></div>
+            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.05 mm</div></div>
           </div>
           <div class="cobot-footer">
             <div>
@@ -923,16 +931,16 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
     <h2 class="s-h" style="color:var(--blanc);">Solutions pour<br>tous les secteurs</h2>
     <p class="s-sub" style="color:var(--txt2);">Des cobots FAIRINO opèrent dans toutes les industries. Découvrez les principales applications adaptées à vos besoins.</p>
     <div class="app-grid reveal">
-      <div class="app-card">
-        <img src="images/applications/soudure.jpg" alt="Soudage robotisé" class="app-img-soudage" onerror="this.onerror=null;this.src='images/applications/soudage.jpg';">
+      <a class="app-card" href="https://www.youtube.com/watch?v=GQd8pw7OSOI" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/GQd8pw7OSOI/hqdefault.jpg" alt="Soudage robotisé" class="app-img-soudage">
         <div class="app-label">
           <div class="app-tag">Application</div>
           <div class="app-title">Soudage</div>
           <div class="app-arrow"></div>
         </div>
-      </div>
-      <div class="app-card">
-        <img src="images/applications/palletisation.jpeg" alt="Palettisation" class="app-img-palettisation">
+      </a>
+      <div class="app-card" onmouseenter="swapPalettisation(true)" onmouseleave="swapPalettisation(false)">
+        <img src="images/applications/palletisation.jpeg" alt="Palettisation" class="app-img-palettisation" id="palettisationImg">
         <div class="app-label">
           <div class="app-tag">Application</div>
           <div class="app-title">Palettisation</div>
@@ -947,14 +955,14 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           <div class="app-arrow"></div>
         </div>
       </div>
-      <div class="app-card">
-        <img src="images/applications/vissage.jpg" alt="Vissage automatisé" class="app-img-vissage">
+      <a class="app-card" href="https://www.youtube.com/watch?v=-j4-voHJv3I" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/-j4-voHJv3I/hqdefault.jpg" alt="Etiquettage automatisé" class="app-img-vissage">
         <div class="app-label">
           <div class="app-tag">Application</div>
-          <div class="app-title">Vissage auto.</div>
+          <div class="app-title">Etiquettage.</div>
           <div class="app-arrow"></div>
         </div>
-      </div>
+      </a>
       <div class="app-card">
         <img src="images/applications/picking.jpeg" alt="Picking" class="app-img-picking">
         <div class="app-label">
@@ -1257,8 +1265,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
         <li><a href="partenaires.html">Devenir partenaire</a></li>
         <li><a href="#">Carrières</a></li>
         <li><a href="#support">Contact</a></li>
-        <li><a href="#">Mentions légales</a></li>
-        <li><a href="#">CGV</a></li>
+        <li><a href="mentions-legales.html" target="_blank" rel="noopener">Mentions légales</a></li>
       </ul>
     </div>
   </div>
@@ -1375,6 +1382,14 @@ async function submitModal() {
   }
 }
 document.getElementById('modal').addEventListener('click', e => { if(e.target === document.getElementById('modal')) closeModal(); });
+
+function swapPalettisation(hover) {
+  const img = document.getElementById('palettisationImg');
+  if (!img) return;
+  img.src = hover
+    ? 'https://img.youtube.com/vi/ni5qXRYwTOk/hqdefault.jpg'
+    : 'images/applications/palletisation.jpeg';
+}
 
 // ── FAQ
 function faq(btn) {
