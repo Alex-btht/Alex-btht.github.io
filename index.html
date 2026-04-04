@@ -235,6 +235,12 @@ body { font-family: 'Barlow', sans-serif; background: var(--blanc); color: var(-
   transition: transform 0.4s;
 }
 .cobot-card:hover .cobot-img { transform: scale(1.03); }
+.cobot-img-wml {
+  object-fit: contain;
+  object-position: center center;
+  background: #fff;
+  padding: 8px 0;
+}
 .cobot-body { padding: 24px 24px 20px; flex: 1; display: flex; flex-direction: column; }
 .cobot-badge-wrap { position: absolute; top: 12px; left: 12px; }
 .cb-badge {
@@ -635,7 +641,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       Produisez mieux.
     </h1>
     <p class="hero-sub">
-      FAIRINO France distribue les cobots industriels les plus accessibles du marché. Livrés en France, opérationnels en quelques heures, garantis 3 ans.
+      FAIRINO France distribue les cobots industriels les plus accessibles du marché. Livrés en France, opérationnels en quelques heures, garantis 2 ans.
     </p>
     <div class="hero-btns">
       <a href="#cobots" class="btn-or">Voir les produits & prix</a>
@@ -648,7 +654,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
   </div>
 </section>
 
-<!-- TICKER -->
+<!-- TICKER AFFICHAGE DEROULANT-->
 <div class="ticker">
   <div class="ticker-inner" id="tickerInner">
     <span class="tick-item">Livraison France incluse</span>
@@ -656,15 +662,15 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
     <span class="tick-item">Répétabilité ±0.02 mm</span>
     <span class="tick-item">6 modèles — de 3 à 30 kg</span>
     <span class="tick-item">Installation en 2 heures</span>
-    <span class="tick-item">Garantie 3 ans</span>
-    <span class="tick-item">Support 7j/7</span>
+    <span class="tick-item">Garantie 2 ans</span>
+    <span class="tick-item">Support 5j/7</span>
     <span class="tick-item">Livraison France incluse</span>
     <span class="tick-item">Certifié ISO 10218</span>
     <span class="tick-item">Répétabilité ±0.02 mm</span>
     <span class="tick-item">6 modèles — de 3 à 30 kg</span>
     <span class="tick-item">Installation en 2 heures</span>
-    <span class="tick-item">Garantie 3 ans</span>
-    <span class="tick-item">Support 7j/7</span>
+    <span class="tick-item">Garantie 2 ans</span>
+    <span class="tick-item">Support 5j/7</span>
   </div>
 </div>
 
@@ -684,7 +690,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       <div class="stat-k">Clients actifs</div>
     </div>
     <div class="stat-box">
-      <div class="stat-v">3 ans</div>
+      <div class="stat-v">2 ans</div>
       <div class="stat-k">Garantie complète</div>
     </div>
   </div>
@@ -705,7 +711,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       <!-- FR3 -->
       <div class="cobot-card" onclick="openModal('FR3')">
         <div class="cobot-badge-wrap"><span class="cb-badge cb-pop">Best-seller</span></div>
-        <img src="images/cobots/fr3.jpg" alt="FAIRINO FR3" class="cobot-img">
+        <img src="images/cobots/Front.png" alt="FAIRINO FR3" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR3</div>
           <div class="cobot-range">3 KGS · 622 MM</div>
@@ -724,10 +730,32 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
         </div>
       </div>
 
+      <!-- FR3-WML -->
+      <div class="cobot-card" onclick="openModal('FR3-WML')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-new">Nouveau</span></div>
+        <img src="images/cobots/WML.png" alt="FAIRINO FR3-WML" class="cobot-img cobot-img-wml" onerror="this.onerror=null;this.src='images/cobots/Front.png';">
+        <div class="cobot-body">
+          <div class="cobot-model">FR3-WML</div>
+          <div class="cobot-range">3 KGS · 922 MM</div>
+          <div class="cobot-specs">
+            <div class="cs"><div class="cs-k">Charge</div><div class="cs-v">3 kg</div></div>
+            <div class="cs"><div class="cs-k">Portée</div><div class="cs-v">922 mm</div></div>
+            <div class="cs"><div class="cs-k">Répét.</div><div class="cs-v">±0.02 mm</div></div>
+          </div>
+          <div class="cobot-footer">
+            <div>
+              <div class="cobot-price">PRIX SUR DEMANDE</div>
+              <div class="cobot-price-sub">HT · Livré en France</div>
+            </div>
+            <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR3-WML')">Devis</button>
+          </div>
+        </div>
+      </div>
+
       <!-- FR5 -->
       <div class="cobot-card" onclick="openModal('FR5')">
         <div class="cobot-badge-wrap"><span class="cb-badge cb-new">Nouveau</span></div>
-        <img src="images/cobots/fr5.jpg" alt="FAIRINO FR5" class="cobot-img">
+        <img src="images/cobots/Front.png" alt="FAIRINO FR5" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR5</div>
           <div class="cobot-range">5 KGS · 922 MM</div>
@@ -749,7 +777,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       <!-- FAIRINO-FR5-WML — En cours d'arrivage -->
       <div class="cobot-card" style="opacity:0.72; pointer-events:none;">
         <div class="cobot-badge-wrap"><span class="cb-badge cb-soon">En cours d'arrivage</span></div>
-        <img src="images/cobots/fr5.jpg" alt="FAIRINO-FR5-WML" class="cobot-img" style="filter:grayscale(45%);">
+        <img src="images/cobots/WML.png" alt="FAIRINO-FR5-WML" class="cobot-img cobot-img-wml" onerror="this.onerror=null;this.src='images/cobots/Front.png';">
         <div class="cobot-body">
           <div class="cobot-model" style="color:#999;">FR5-WML</div>
           <div class="cobot-range" style="color:#bbb;">5 KGS · 1 900 MM</div>
@@ -762,14 +790,14 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
             <div>
               <div class="cobot-price-soon">En cours d'arrivage</div>
             </div>
-            <button class="btn-cobot-soon" style="pointer-events:all;" onclick="openModal('FAIRINO-FR5-WML - Préinscription')">M\'alerter</button>
+            <button class="btn-cobot-soon" style="pointer-events:all;" onclick="openModal('FAIRINO-FR5-WML - Préinscription')">M'alerter</button>
           </div>
         </div>
       </div>
 
       <!-- FR10 -->
       <div class="cobot-card" onclick="openModal('FR10')">
-        <img src="images/cobots/fr10.jpg" alt="FAIRINO FR10" class="cobot-img">
+        <img src="images/cobots/Front.png" alt="FAIRINO FR10" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR10</div>
           <div class="cobot-range">10 KGS · 1 400 MM</div>
@@ -790,7 +818,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
 
       <!-- FR16 -->
       <div class="cobot-card" onclick="openModal('FR16')">
-        <img src="images/cobots/fr16.jpg" alt="FAIRINO FR16" class="cobot-img">
+        <img src="images/cobots/Front.png" alt="FAIRINO FR16" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR16</div>
           <div class="cobot-range">16 KGS · 1 034 MM</div>
@@ -811,7 +839,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
 
       <!-- FR20 -->
       <div class="cobot-card" onclick="openModal('FR20')">
-        <img src="images/cobots/fr20.jpg" alt="FAIRINO FR20" class="cobot-img">
+        <img src="images/cobots/Front.png" alt="FAIRINO FR20" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR20</div>
           <div class="cobot-range">20 KGS · 1 854 MM</div>
@@ -832,7 +860,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
 
       <!-- FR30 -->
       <div class="cobot-card" onclick="openModal('FR30')">
-        <img src="images/cobots/fr30.jpg" alt="FAIRINO FR30" class="cobot-img">
+        <img src="images/cobots/Front.png" alt="FAIRINO FR30" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR30</div>
           <div class="cobot-range">30 KGS · 1 403 MM</div>
@@ -854,7 +882,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       <!-- FR30L — Coming soon -->
       <div class="cobot-card" style="opacity:0.65; pointer-events:none;">
         <div class="cobot-badge-wrap"><span class="cb-badge cb-soon">Prochainement</span></div>
-        <img src="images/cobots/fr30l.jpg" alt="FAIRINO FR30L" class="cobot-img" style="filter:grayscale(60%);">
+        <img src="images/cobots/Front.png" alt="FAIRINO FR30L" class="cobot-img" style="filter:grayscale(60%);">
         <div class="cobot-body">
           <div class="cobot-model" style="color:#999;">FR30L</div>
           <div class="cobot-range" style="color:#bbb;">30 KGS · Longue portée</div>
@@ -867,7 +895,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
             <div>
               <div class="cobot-price-soon">Disponible prochainement</div>
             </div>
-            <button class="btn-cobot-soon" style="pointer-events:all;" onclick="openModal('FR30L - Préinscription')">M\'alerter</button>
+            <button class="btn-cobot-soon" style="pointer-events:all;" onclick="openModal('FR30L - Préinscription')">M'alerter</button>
           </div>
         </div>
       </div>
@@ -967,7 +995,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           <div class="equip-name">Vision 3D</div>
           <div class="equip-desc">Caméra 3D intégrée pour la reconnaissance de pièces, le tri désordonné et le contrôle qualité automatisé.</div>
           <div class="equip-tags">
-            <span class="etag">Tous modèles</span><span class="etag">IA embarquée</span>
+            <span class="etag">Tous modèles</span><span class="etag">Logiciel embarquée</span>
           </div>
         </div>
       </div>
@@ -984,17 +1012,6 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
         </div>
       </div>
 
-      <div class="equip-card">
-        <img src="images/equipments/agv.jpg" alt="AGV AMR mobile" class="equip-img">
-        <div class="equip-body">
-          <div class="equip-cat">Mobilité</div>
-          <div class="equip-name">AGV / AMR</div>
-          <div class="equip-desc">Plateforme mobile autonome pour cobot nomade. Navigation LIDAR, intégration native avec les cobots FAIRINO.</div>
-          <div class="equip-tags">
-            <span class="etag">FR3 · FR5 · FR10</span><span class="etag">LIDAR</span>
-          </div>
-        </div>
-      </div>
 
       <div class="equip-card">
         <img src="images/equipments/rail-lineaire.jpg" alt="Rail linéaire" class="equip-img">
@@ -1061,7 +1078,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
         <div class="why-or"></div>
         <div class="why-icon"></div>
         <div class="why-title">Meilleur ROI du marché</div>
-        <div class="why-desc">À partir de 4 600 € HT livré. ROI typique en moins de 18 mois. Financement LLD disponible pour démarrer sans investissement initial lourd.</div>
+        <div class="why-desc">À partir de 4 600 € HT livré. ROI typique en moins de 18 mois. Financement LLD sur demande pour démarrer sans investissement initial lourd.</div>
       </div>
       <div class="why-item" data-n="06">
         <div class="why-or"></div>
@@ -1131,7 +1148,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       <a href="#" class="sup-card">
         <div class="sup-icon"></div>
         <div class="sup-name">Pièces détachées</div>
-        <div class="sup-desc">Boutique de pièces certifiées FAIRINO. Livraison express J+1 en France. Moteurs, réducteurs, brides.</div>
+        <div class="sup-desc">Boutique de pièces certifiées FAIRINO. Livraison en France.</div>
         <div class="sup-link">Commander →</div>
       </a>
       <a href="#" class="sup-card">
@@ -1170,19 +1187,19 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       <div class="faq-h">Questions fréquentes</div>
       <div class="faq-i">
         <button class="faq-q-btn" onclick="faq(this)">Combien de temps prend l'installation d'un cobot FAIRINO ? <span class="faq-arr">▼</span></button>
-        <div class="faq-ans"><div class="faq-ans-inner">L'installation mécanique prend entre 30 minutes et 2 heures. La mise en service via FAIRINO Studio, la configuration des zones de sécurité et la programmation de la première tâche sont accessibles sans expertise préalable. La majorité de nos clients sont opérationnels dès le premier jour.</div></div>
+        <div class="faq-ans"><div class="faq-ans-inner">L'installation prend entre 30 minutes et 2 heures. La mise en service via la WebApp FAIRINO , la configuration des zones de sécurité et la programmation de la première tâche sont accessibles sans expertise préalable. La majorité de nos clients sont opérationnels dès le premier jour.</div></div>
       </div>
       <div class="faq-i">
         <button class="faq-q-btn" onclick="faq(this)">Les robots sont-ils livrés avec contrôleur et logiciel ? <span class="faq-arr">▼</span></button>
-        <div class="faq-ans"><div class="faq-ans-inner">Oui. Chaque FAIRINO est livré avec son contrôleur dédié, les câbles d'alimentation et le logiciel FAIRINO Studio (Windows/Linux). La tablette de programmation tactile et les accessoires de fin de bras sont disponibles en option sur devis.</div></div>
+        <div class="faq-ans"><div class="faq-ans-inner">Oui. Chaque FAIRINO est livré avec son contrôleur dédié, le câble d'alimentation ainsi qu'un bouton d'arrêt d'urgence. La tablette de programmation tactile (Teach Pendant) et les accessoires de fin de bras sont disponibles en option sur devis.</div></div>
       </div>
       <div class="faq-i">
         <button class="faq-q-btn" onclick="faq(this)">Quelle est la garantie incluse ? <span class="faq-arr">▼</span></button>
-        <div class="faq-ans"><div class="faq-ans-inner">3 ans pièces et main-d'œuvre sur tous les modèles. Des contrats de maintenance préventive annuels sont disponibles pour planifier vos entretiens et obtenir des délais d'intervention prioritaires sur site.</div></div>
+        <div class="faq-ans"><div class="faq-ans-inner">2 ans pièces et main-d'œuvre sur tous les modèles. Des contrats de maintenance préventive annuels sont disponibles pour planifier vos entretiens et obtenir des délais d'intervention prioritaires sur site.</div></div>
       </div>
       <div class="faq-i">
         <button class="faq-q-btn" onclick="faq(this)">Quels protocoles de communication sont supportés ? <span class="faq-arr">▼</span></button>
-        <div class="faq-ans"><div class="faq-ans-inner">EtherCAT, PROFINET, Modbus TCP/RTU, EtherNet/IP, DeviceNet. Compatible ROS/ROS2 nativement. SDK Python & C++ open-source disponible. Intégration certifiée avec les systèmes de vision Cognex, Basler et Keyence.</div></div>
+        <div class="faq-ans"><div class="faq-ans-inner">EtherCAT, PROFINET, Modbus TCP/RTU, EtherNet/IP, DeviceNet. Compatible ROS/ROS2 nativement. SDK Python & C++ open-source disponible. Cartes de communication en options</div></div>
       </div>
       <div class="faq-i">
         <button class="faq-q-btn" onclick="faq(this)">Proposez-vous des solutions de financement ? <span class="faq-arr">▼</span></button>
@@ -1270,7 +1287,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       </svg>
       LinkedIn FAIRINO France
     </a>
-    <span>🇫🇷 Distribution officielle France métropolitaine</span>
+    <span>🇫🇷 Distribution officielle pour la France</span>
   </div>
 </footer>
 
