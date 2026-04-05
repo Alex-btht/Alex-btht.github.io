@@ -347,15 +347,19 @@
       software: document.getElementById('tab-software')
     };
 
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tab = btn.dataset.tab;
-        tabButtons.forEach(b => b.classList.toggle('active', b === btn));
-        Object.entries(tabPanels).forEach(([key, panel]) => {
-          panel.classList.toggle('active', key === tab);
-        });
+    function setActiveTab(tab) {
+      const key = tab === 'software' ? 'software' : 'models';
+      tabButtons.forEach(b => b.classList.toggle('active', b.dataset.tab === key));
+      Object.entries(tabPanels).forEach(([name, panel]) => {
+        panel.classList.toggle('active', name === key);
       });
+    }
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => setActiveTab(btn.dataset.tab));
     });
+
+    setActiveTab(window.location.hash.replace('#', ''));
   </script>
 </body>
 </html>
