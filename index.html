@@ -634,6 +634,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
     <li><a href="#cobots">Produits & Prix</a></li>
     <li><a href="#applications">Applications</a></li>
     <li><a href="#equipements">Équipements</a></li>
+    <li><a href="telechargements.html">Téléchargements</a></li>
     <li><a href="#societe">Société</a></li>
     <li><a href="partenaires.html">Partenaires</a></li>
     <li><a href="#support">Support</a></li>
@@ -1252,6 +1253,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       <div class="foot-col-h">Ressources</div>
       <ul class="foot-links">
         <li><a href="https://fairino-doc-en.readthedocs.io" target="_blank">Documentation</a></li>
+        <li><a href="telechargements.html">Téléchargements</a></li>
         <li><a href="#support">Formations</a></li>
         <li><a href="#equipements">Équipements</a></li>
         <li><a href="#support">Pièces détachées</a></li>
@@ -1263,7 +1265,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       <ul class="foot-links">
         <li><a href="#">À propos</a></li>
         <li><a href="partenaires.html">Devenir partenaire</a></li>
-        <li><a href="carrieres.html" target="_blank" rel="noopener">Carrières</a></li>
+        <li id="careersLinkItem" style="display:none;"><a href="carrieres.html" target="_blank" rel="noopener">Carrières</a></li>
         <li><a href="#support">Contact</a></li>
         <li><a href="mentions-legales.html" target="_blank" rel="noopener">Mentions légales</a></li>
       </ul>
@@ -1391,6 +1393,15 @@ function swapPalettisation(hover) {
     : 'images/applications/palletisation.jpeg';
 }
 
+function initCareersToggle() {
+  const item = document.getElementById('careersLinkItem');
+  if (!item) return;
+
+  // Passe a true quand tu veux afficher le lien Carrières dans le footer.
+  const SHOW_CAREERS = false;
+  item.style.display = SHOW_CAREERS ? 'list-item' : 'none';
+}
+
 // ── FAQ
 function faq(btn) {
   const item = btn.parentElement;
@@ -1411,6 +1422,7 @@ const revealObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+initCareersToggle();
 </script>
 
 </body>
