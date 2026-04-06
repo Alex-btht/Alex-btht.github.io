@@ -1,7 +1,7 @@
 {
   "showCareersLink": false,
   "eventPopup": {
-    "enabled": false,
+    "enabled": true,
     "showOnlyOncePerSession": true,
     "title": "FAIRINO France au salon Global Industrie",
     "subtitle": "Retrouvez-nous sur notre stand pour des demos cobot en direct.",
