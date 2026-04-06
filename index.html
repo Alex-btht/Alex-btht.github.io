@@ -807,8 +807,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
     <div class="cobots-grid reveal">
 
       <!-- FR3 -->
-      <div class="cobot-card" onclick="openModal('FR3')">
-        <div class="cobot-badge-wrap"><span class="cb-badge cb-pop">Best-seller</span></div>
+      <div class="cobot-card" data-cobot="FR3" onclick="openModal('FR3')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-pop" data-role="badge">Best-seller</span></div>
         <img src="images/cobots/Front.png" alt="FAIRINO FR3" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR3</div>
@@ -820,8 +820,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           </div>
           <div class="cobot-footer">
             <div>
-              <div class="cobot-price">4 600 €</div>
-              <div class="cobot-price-sub">HT · Livré en France</div>
+              <div class="cobot-price" data-role="price">4 600 €</div>
+              <div class="cobot-price-sub" data-role="price-sub">HT · Livré en France</div>
             </div>
             <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR3')">Devis</button>
           </div>
@@ -829,8 +829,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       </div>
 
       <!-- FR3-WML -->
-      <div class="cobot-card" onclick="openModal('FR3-WML')">
-        <div class="cobot-badge-wrap"><span class="cb-badge cb-new">Nouveau</span></div>
+      <div class="cobot-card" data-cobot="FR3-WML" onclick="openModal('FR3-WML')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-new" data-role="badge">Nouveau</span></div>
         <img src="images/cobots/WML.png" alt="FAIRINO FR3-WML" class="cobot-img cobot-img-wml" onerror="this.onerror=null;this.src='images/cobots/Front.png';">
         <div class="cobot-body">
           <div class="cobot-model">FR3-WML</div>
@@ -842,8 +842,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           </div>
           <div class="cobot-footer">
             <div>
-              <div class="cobot-price">PRIX SUR DEMANDE</div>
-              <div class="cobot-price-sub">HT · Livré en France</div>
+              <div class="cobot-price" data-role="price">PRIX SUR DEMANDE</div>
+              <div class="cobot-price-sub" data-role="price-sub">HT · Livré en France</div>
             </div>
             <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR3-WML')">Devis</button>
           </div>
@@ -851,8 +851,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       </div>
 
       <!-- FR5 -->
-      <div class="cobot-card" onclick="openModal('FR5')">
-        <div class="cobot-badge-wrap"><span class="cb-badge cb-new">Nouveau</span></div>
+      <div class="cobot-card" data-cobot="FR5" onclick="openModal('FR5')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-new" data-role="badge">Nouveau</span></div>
         <img src="images/cobots/Front.png" alt="FAIRINO FR5" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR5</div>
@@ -864,8 +864,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           </div>
           <div class="cobot-footer">
             <div>
-              <div class="cobot-price">4 800 €</div>
-              <div class="cobot-price-sub">HT · Livré en France</div>
+              <div class="cobot-price" data-role="price">4 800 €</div>
+              <div class="cobot-price-sub" data-role="price-sub">HT · Livré en France</div>
             </div>
             <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR5')">Devis</button>
           </div>
@@ -873,8 +873,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       </div>
 
       <!-- FAIRINO-FR5-WML — En cours d'arrivage -->
-      <div class="cobot-card" style="opacity:0.72; pointer-events:none;">
-        <div class="cobot-badge-wrap"><span class="cb-badge cb-soon">En cours d'arrivage</span></div>
+      <div class="cobot-card" data-cobot="FR5-WML" style="opacity:0.72; pointer-events:none;">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-soon" data-role="badge">En cours d'arrivage</span></div>
         <img src="images/cobots/WML.png" alt="FAIRINO-FR5-WML" class="cobot-img cobot-img-wml" onerror="this.onerror=null;this.src='images/cobots/Front.png';">
         <div class="cobot-body">
           <div class="cobot-model" style="color:#999;">FR5-WML</div>
@@ -886,7 +886,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           </div>
           <div class="cobot-footer">
             <div>
-              <div class="cobot-price-soon">En cours d'arrivage</div>
+              <div class="cobot-price-soon" data-role="price">En cours d'arrivage</div>
+              <div class="cobot-price-sub" data-role="price-sub" style="display:none;"></div>
             </div>
             <button class="btn-cobot-soon" style="pointer-events:all;" onclick="openModal('FAIRINO-FR5-WML - Préinscription')">M'alerter</button>
           </div>
@@ -894,7 +895,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       </div>
 
       <!-- FR10 -->
-      <div class="cobot-card" onclick="openModal('FR10')">
+      <div class="cobot-card" data-cobot="FR10" onclick="openModal('FR10')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-pop" data-role="badge" style="visibility:hidden;">En stock</span></div>
         <img src="images/cobots/Front.png" alt="FAIRINO FR10" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR10</div>
@@ -906,8 +908,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           </div>
           <div class="cobot-footer">
             <div>
-              <div class="cobot-price">10 500 €</div>
-              <div class="cobot-price-sub">HT · Livré en France</div>
+              <div class="cobot-price" data-role="price">10 500 €</div>
+              <div class="cobot-price-sub" data-role="price-sub">HT · Livré en France</div>
             </div>
             <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR10')">Devis</button>
           </div>
@@ -915,7 +917,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       </div>
 
       <!-- FR16 -->
-      <div class="cobot-card" onclick="openModal('FR16')">
+      <div class="cobot-card" data-cobot="FR16" onclick="openModal('FR16')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-new" data-role="badge" style="visibility:hidden;">Sur demande</span></div>
         <img src="images/cobots/Front.png" alt="FAIRINO FR16" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR16</div>
@@ -927,8 +930,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           </div>
           <div class="cobot-footer">
             <div>
-              <div class="cobot-price">PRIX SUR DEMANDE</div>
-              <div class="cobot-price-sub">HT · Livré en France</div>
+              <div class="cobot-price" data-role="price">PRIX SUR DEMANDE</div>
+              <div class="cobot-price-sub" data-role="price-sub">HT · Livré en France</div>
             </div>
             <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR16')">Devis</button>
           </div>
@@ -936,7 +939,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       </div>
 
       <!-- FR20 -->
-      <div class="cobot-card" onclick="openModal('FR20')">
+      <div class="cobot-card" data-cobot="FR20" onclick="openModal('FR20')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-new" data-role="badge" style="visibility:hidden;">Sur demande</span></div>
         <img src="images/cobots/Front.png" alt="FAIRINO FR20" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR20</div>
@@ -948,8 +952,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           </div>
           <div class="cobot-footer">
             <div>
-              <div class="cobot-price">PRIX SUR DEMANDE</div>
-              <div class="cobot-price-sub">HT · Livré en France</div>
+              <div class="cobot-price" data-role="price">PRIX SUR DEMANDE</div>
+              <div class="cobot-price-sub" data-role="price-sub">HT · Livré en France</div>
             </div>
             <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR20')">Devis</button>
           </div>
@@ -957,7 +961,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       </div>
 
       <!-- FR30 -->
-      <div class="cobot-card" onclick="openModal('FR30')">
+      <div class="cobot-card" data-cobot="FR30" onclick="openModal('FR30')">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-new" data-role="badge" style="visibility:hidden;">Sur demande</span></div>
         <img src="images/cobots/Front.png" alt="FAIRINO FR30" class="cobot-img">
         <div class="cobot-body">
           <div class="cobot-model">FR30</div>
@@ -969,8 +974,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           </div>
           <div class="cobot-footer">
             <div>
-              <div class="cobot-price">PRIX SUR DEMANDE</div>
-              <div class="cobot-price-sub">HT · Livré en France</div>
+              <div class="cobot-price" data-role="price">PRIX SUR DEMANDE</div>
+              <div class="cobot-price-sub" data-role="price-sub">HT · Livré en France</div>
             </div>
             <button class="btn-cobot" onclick="event.stopPropagation(); openModal('FR30')">Devis</button>
           </div>
@@ -978,8 +983,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
       </div>
 
       <!-- FR30L — Coming soon -->
-      <div class="cobot-card" style="opacity:0.65; pointer-events:none;">
-        <div class="cobot-badge-wrap"><span class="cb-badge cb-soon">Prochainement</span></div>
+      <div class="cobot-card" data-cobot="FR30L" style="opacity:0.65; pointer-events:none;">
+        <div class="cobot-badge-wrap"><span class="cb-badge cb-soon" data-role="badge">Prochainement</span></div>
         <img src="images/cobots/Front.png" alt="FAIRINO FR30L" class="cobot-img" style="filter:grayscale(60%);">
         <div class="cobot-body">
           <div class="cobot-model" style="color:#999;">FR30L</div>
@@ -991,7 +996,8 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
           </div>
           <div class="cobot-footer">
             <div>
-              <div class="cobot-price-soon">Disponible prochainement</div>
+              <div class="cobot-price-soon" data-role="price">Disponible prochainement</div>
+              <div class="cobot-price-sub" data-role="price-sub" style="display:none;"></div>
             </div>
             <button class="btn-cobot-soon" style="pointer-events:all;" onclick="openModal('FR30L - Préinscription')">M'alerter</button>
           </div>
@@ -1323,12 +1329,12 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
     <div>
       <div class="foot-col-h">Produits</div>
       <ul class="foot-links">
-        <li><a href="#cobots">FR3 — 4 600 € HT</a></li>
-        <li><a href="#cobots">FR5 — 4 800 € HT</a></li>
-        <li><a href="#cobots">FR10 — 10 500 € HT</a></li>
-        <li><a href="#cobots">FR16 — PRIX SUR DEMANDE € HT</a></li>
-        <li><a href="#cobots">FR20 — PRIX SUR DEMANDE € HT</a></li>
-        <li><a href="#cobots">FR30 — PRIX SUR DEMANDE € HT</a></li>
+        <li><a href="#cobots" data-price-link="FR3">FR3 — 4 600 € HT</a></li>
+        <li><a href="#cobots" data-price-link="FR5">FR5 — 4 800 € HT</a></li>
+        <li><a href="#cobots" data-price-link="FR10">FR10 — 10 500 € HT</a></li>
+        <li><a href="#cobots" data-price-link="FR16">FR16 — PRIX SUR DEMANDE HT</a></li>
+        <li><a href="#cobots" data-price-link="FR20">FR20 — PRIX SUR DEMANDE HT</a></li>
+        <li><a href="#cobots" data-price-link="FR30">FR30 — PRIX SUR DEMANDE HT</a></li>
       </ul>
     </div>
     <div>
@@ -1544,6 +1550,52 @@ function initCareersToggle() {
   item.style.display = SHOW_CAREERS ? 'list-item' : 'none';
 }
 
+function initCobotAdminConfig() {
+  const cfg = (typeof window.getSiteConfig === 'function')
+    ? window.getSiteConfig()
+    : { cobots: {} };
+  const cobots = cfg.cobots || {};
+
+  const statusUI = {
+    in_stock: { label: 'En stock', className: 'cb-pop' },
+    arriving: { label: "En cours d'arrivage", className: 'cb-soon' },
+    on_demand: { label: 'Sur demande', className: 'cb-new' },
+    soon: { label: 'Prochainement', className: 'cb-soon' }
+  };
+
+  document.querySelectorAll('[data-cobot]').forEach((card) => {
+    const model = card.getAttribute('data-cobot');
+    const modelCfg = cobots[model];
+    if (!modelCfg) return;
+
+    const priceEl = card.querySelector('[data-role="price"]');
+    const subEl = card.querySelector('[data-role="price-sub"]');
+    const badgeEl = card.querySelector('[data-role="badge"]');
+
+    if (priceEl && typeof modelCfg.priceText === 'string') {
+      priceEl.textContent = modelCfg.priceText;
+    }
+    if (subEl && typeof modelCfg.priceSubText === 'string') {
+      subEl.textContent = modelCfg.priceSubText;
+      subEl.style.display = modelCfg.priceSubText ? 'block' : 'none';
+    }
+    if (badgeEl) {
+      const ui = statusUI[modelCfg.status] || statusUI.on_demand;
+      badgeEl.textContent = ui.label;
+      badgeEl.classList.remove('cb-pop', 'cb-new', 'cb-soon');
+      badgeEl.classList.add(ui.className);
+      badgeEl.style.visibility = 'visible';
+    }
+  });
+
+  document.querySelectorAll('[data-price-link]').forEach((link) => {
+    const model = link.getAttribute('data-price-link');
+    const modelCfg = cobots[model];
+    if (!modelCfg || !modelCfg.priceText) return;
+    link.textContent = `${model} — ${modelCfg.priceText} HT`;
+  });
+}
+
 // ── FAQ
 function faq(btn) {
   const item = btn.parentElement;
@@ -1566,9 +1618,11 @@ const revealObs = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 initEventBanner();
 initCareersToggle();
+initCobotAdminConfig();
 window.addEventListener('fairino:site-config-ready', () => {
   initEventBanner();
   initCareersToggle();
+  initCobotAdminConfig();
 });
 </script>
 

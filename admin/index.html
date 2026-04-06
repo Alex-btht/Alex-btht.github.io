@@ -51,6 +51,18 @@
     .btn-alt { background: #f3f3f3; color: #333; border: 1px solid #ddd; }
     .msg { font-size: 13px; color: #2d8d58; display: none; }
     .warn { font-size: 12px; color: #8a5b00; background: #fff6da; border: 1px solid #f3df9d; padding: 8px 10px; border-radius: 8px; }
+    .cobot-table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 10px; }
+    .cobot-table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    .cobot-table th {
+      text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: .09em; color: var(--muted);
+      padding: 9px; border-bottom: 1px solid var(--line); background: #fafafa;
+    }
+    .cobot-table td { padding: 9px; border-bottom: 1px solid #f1f1f1; }
+    .cobot-table tr:last-child td { border-bottom: 0; }
+    .cobot-table input, .cobot-table select {
+      width: 100%; border: 1px solid #d8d8d8; border-radius: 8px; padding: 8px 9px; font: inherit; font-size: 13px;
+      background: #fff;
+    }
     #adminPanel { display: none; }
     @media (max-width: 760px) { .row { grid-template-columns: 1fr; } .head h1 { font-size: 28px; } }
   </style>
@@ -148,6 +160,78 @@
           </div>
         </div>
 
+        <div class="group">
+          <h2>Cobots (prix + état)</h2>
+          <div class="cobot-table-wrap">
+            <table class="cobot-table">
+              <thead>
+                <tr>
+                  <th>Modèle</th>
+                  <th>État</th>
+                  <th>Prix / Texte</th>
+                  <th>Sous-texte</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>FR3</td>
+                  <td><select data-cobot-field="status" data-cobot="FR3"><option value="in_stock">En stock</option><option value="arriving">En arrivage</option><option value="on_demand">Sur demande</option><option value="soon">Prochainement</option></select></td>
+                  <td><input type="text" data-cobot-field="priceText" data-cobot="FR3"></td>
+                  <td><input type="text" data-cobot-field="priceSubText" data-cobot="FR3"></td>
+                </tr>
+                <tr>
+                  <td>FR3-WML</td>
+                  <td><select data-cobot-field="status" data-cobot="FR3-WML"><option value="in_stock">En stock</option><option value="arriving">En arrivage</option><option value="on_demand">Sur demande</option><option value="soon">Prochainement</option></select></td>
+                  <td><input type="text" data-cobot-field="priceText" data-cobot="FR3-WML"></td>
+                  <td><input type="text" data-cobot-field="priceSubText" data-cobot="FR3-WML"></td>
+                </tr>
+                <tr>
+                  <td>FR5</td>
+                  <td><select data-cobot-field="status" data-cobot="FR5"><option value="in_stock">En stock</option><option value="arriving">En arrivage</option><option value="on_demand">Sur demande</option><option value="soon">Prochainement</option></select></td>
+                  <td><input type="text" data-cobot-field="priceText" data-cobot="FR5"></td>
+                  <td><input type="text" data-cobot-field="priceSubText" data-cobot="FR5"></td>
+                </tr>
+                <tr>
+                  <td>FR5-WML</td>
+                  <td><select data-cobot-field="status" data-cobot="FR5-WML"><option value="in_stock">En stock</option><option value="arriving">En arrivage</option><option value="on_demand">Sur demande</option><option value="soon">Prochainement</option></select></td>
+                  <td><input type="text" data-cobot-field="priceText" data-cobot="FR5-WML"></td>
+                  <td><input type="text" data-cobot-field="priceSubText" data-cobot="FR5-WML"></td>
+                </tr>
+                <tr>
+                  <td>FR10</td>
+                  <td><select data-cobot-field="status" data-cobot="FR10"><option value="in_stock">En stock</option><option value="arriving">En arrivage</option><option value="on_demand">Sur demande</option><option value="soon">Prochainement</option></select></td>
+                  <td><input type="text" data-cobot-field="priceText" data-cobot="FR10"></td>
+                  <td><input type="text" data-cobot-field="priceSubText" data-cobot="FR10"></td>
+                </tr>
+                <tr>
+                  <td>FR16</td>
+                  <td><select data-cobot-field="status" data-cobot="FR16"><option value="in_stock">En stock</option><option value="arriving">En arrivage</option><option value="on_demand">Sur demande</option><option value="soon">Prochainement</option></select></td>
+                  <td><input type="text" data-cobot-field="priceText" data-cobot="FR16"></td>
+                  <td><input type="text" data-cobot-field="priceSubText" data-cobot="FR16"></td>
+                </tr>
+                <tr>
+                  <td>FR20</td>
+                  <td><select data-cobot-field="status" data-cobot="FR20"><option value="in_stock">En stock</option><option value="arriving">En arrivage</option><option value="on_demand">Sur demande</option><option value="soon">Prochainement</option></select></td>
+                  <td><input type="text" data-cobot-field="priceText" data-cobot="FR20"></td>
+                  <td><input type="text" data-cobot-field="priceSubText" data-cobot="FR20"></td>
+                </tr>
+                <tr>
+                  <td>FR30</td>
+                  <td><select data-cobot-field="status" data-cobot="FR30"><option value="in_stock">En stock</option><option value="arriving">En arrivage</option><option value="on_demand">Sur demande</option><option value="soon">Prochainement</option></select></td>
+                  <td><input type="text" data-cobot-field="priceText" data-cobot="FR30"></td>
+                  <td><input type="text" data-cobot-field="priceSubText" data-cobot="FR30"></td>
+                </tr>
+                <tr>
+                  <td>FR30L</td>
+                  <td><select data-cobot-field="status" data-cobot="FR30L"><option value="in_stock">En stock</option><option value="arriving">En arrivage</option><option value="on_demand">Sur demande</option><option value="soon">Prochainement</option></select></td>
+                  <td><input type="text" data-cobot-field="priceText" data-cobot="FR30L"></td>
+                  <td><input type="text" data-cobot-field="priceSubText" data-cobot="FR30L"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div class="actions">
           <button class="btn-main" id="saveBtn" type="button">Enregistrer et publier</button>
           <button class="btn-alt" id="resetBtn" type="button">Réinitialiser</button>
@@ -184,6 +268,7 @@
       eventCtaHref: document.getElementById("eventCtaHref"),
       eventImageUrl: document.getElementById("eventImageUrl")
     };
+    const COBOT_MODELS = ["FR3", "FR3-WML", "FR5", "FR5-WML", "FR10", "FR16", "FR20", "FR30", "FR30L"];
 
     function ghApiBase() {
       const owner = fields.ghOwner.value.trim();
@@ -207,11 +292,29 @@
       fields.eventCtaText.value = cfg.eventPopup.ctaText || "";
       fields.eventCtaHref.value = cfg.eventPopup.ctaHref || "";
       fields.eventImageUrl.value = cfg.eventPopup.imageUrl || "";
+
+      const cobots = (cfg && cfg.cobots) || {};
+      COBOT_MODELS.forEach((model) => {
+        const m = cobots[model] || {};
+        document.querySelector(`[data-cobot-field="status"][data-cobot="${model}"]`).value = m.status || "on_demand";
+        document.querySelector(`[data-cobot-field="priceText"][data-cobot="${model}"]`).value = m.priceText || "";
+        document.querySelector(`[data-cobot-field="priceSubText"][data-cobot="${model}"]`).value = m.priceSubText || "";
+      });
     }
 
     function collectConfigFromForm() {
+      const cobots = {};
+      COBOT_MODELS.forEach((model) => {
+        cobots[model] = {
+          status: document.querySelector(`[data-cobot-field="status"][data-cobot="${model}"]`).value,
+          priceText: document.querySelector(`[data-cobot-field="priceText"][data-cobot="${model}"]`).value.trim(),
+          priceSubText: document.querySelector(`[data-cobot-field="priceSubText"][data-cobot="${model}"]`).value.trim()
+        };
+      });
+
       return {
         showCareersLink: fields.showCareersLink.checked,
+        cobots,
         eventPopup: {
           enabled: fields.eventEnabled.checked,
           showOnlyOncePerSession: fields.eventOnce.checked,

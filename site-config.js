@@ -1,6 +1,17 @@
 (() => {
   const DEFAULT_CONFIG = {
     showCareersLink: false,
+    cobots: {
+      FR3: { status: "in_stock", priceText: "4 600 €", priceSubText: "HT · Livré en France" },
+      "FR3-WML": { status: "on_demand", priceText: "PRIX SUR DEMANDE", priceSubText: "HT · Livré en France" },
+      FR5: { status: "in_stock", priceText: "4 800 €", priceSubText: "HT · Livré en France" },
+      "FR5-WML": { status: "arriving", priceText: "En cours d'arrivage", priceSubText: "" },
+      FR10: { status: "in_stock", priceText: "10 500 €", priceSubText: "HT · Livré en France" },
+      FR16: { status: "on_demand", priceText: "PRIX SUR DEMANDE", priceSubText: "HT · Livré en France" },
+      FR20: { status: "on_demand", priceText: "PRIX SUR DEMANDE", priceSubText: "HT · Livré en France" },
+      FR30: { status: "on_demand", priceText: "PRIX SUR DEMANDE", priceSubText: "HT · Livré en France" },
+      FR30L: { status: "soon", priceText: "Disponible prochainement", priceSubText: "" }
+    },
     eventPopup: {
       enabled: false,
       showOnlyOncePerSession: true,
@@ -24,6 +35,15 @@
 
     if (typeof override.showCareersLink === "boolean") {
       merged.showCareersLink = override.showCareersLink;
+    }
+
+    if (override.cobots && typeof override.cobots === "object") {
+      Object.keys(base.cobots).forEach((model) => {
+        const incoming = override.cobots[model];
+        if (incoming && typeof incoming === "object") {
+          merged.cobots[model] = { ...merged.cobots[model], ...incoming };
+        }
+      });
     }
 
     if (override.eventPopup && typeof override.eventPopup === "object") {
