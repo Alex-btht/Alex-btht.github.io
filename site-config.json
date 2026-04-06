@@ -1,18 +1,54 @@
 {
   "showCareersLink": false,
   "cobots": {
-    "FR3": { "status": "in_stock", "priceText": "4 600 €", "priceSubText": "HT · Livré en France" },
-    "FR3-WML": { "status": "on_demand", "priceText": "PRIX SUR DEMANDE", "priceSubText": "HT · Livré en France" },
-    "FR5": { "status": "in_stock", "priceText": "4 800 €", "priceSubText": "HT · Livré en France" },
-    "FR5-WML": { "status": "arriving", "priceText": "En cours d'arrivage", "priceSubText": "" },
-    "FR10": { "status": "in_stock", "priceText": "10 500 €", "priceSubText": "HT · Livré en France" },
-    "FR16": { "status": "on_demand", "priceText": "PRIX SUR DEMANDE", "priceSubText": "HT · Livré en France" },
-    "FR20": { "status": "on_demand", "priceText": "PRIX SUR DEMANDE", "priceSubText": "HT · Livré en France" },
-    "FR30": { "status": "on_demand", "priceText": "PRIX SUR DEMANDE", "priceSubText": "HT · Livré en France" },
-    "FR30L": { "status": "soon", "priceText": "Disponible prochainement", "priceSubText": "" }
+    "FR3": {
+      "status": "in_stock",
+      "priceText": "4 600 €",
+      "priceSubText": "HT · Livré en France"
+    },
+    "FR3-WML": {
+      "status": "on_demand",
+      "priceText": "PRIX SUR DEMANDE",
+      "priceSubText": "HT · Livré en France"
+    },
+    "FR5": {
+      "status": "in_stock",
+      "priceText": "4 800 €",
+      "priceSubText": "HT · Livré en France"
+    },
+    "FR5-WML": {
+      "status": "soon",
+      "priceText": "En cours d'arrivage",
+      "priceSubText": ""
+    },
+    "FR10": {
+      "status": "in_stock",
+      "priceText": "10 500 €",
+      "priceSubText": "HT · Livré en France"
+    },
+    "FR16": {
+      "status": "on_demand",
+      "priceText": "PRIX SUR DEMANDE",
+      "priceSubText": "HT · Livré en France"
+    },
+    "FR20": {
+      "status": "on_demand",
+      "priceText": "PRIX SUR DEMANDE",
+      "priceSubText": "HT · Livré en France"
+    },
+    "FR30": {
+      "status": "on_demand",
+      "priceText": "PRIX SUR DEMANDE",
+      "priceSubText": "HT · Livré en France"
+    },
+    "FR30L": {
+      "status": "soon",
+      "priceText": "Disponible prochainement",
+      "priceSubText": ""
+    }
   },
   "eventPopup": {
-    "enabled": false,
+    "enabled": true,
     "showOnlyOncePerSession": true,
     "title": "FAIRINO France au salon Global Industrie",
     "subtitle": "Retrouvez-nous sur notre stand pour des demos cobot en direct.",
