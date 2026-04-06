@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - FAIRINO France</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --or: #f56400;
+      --or2: #ff7a1a;
+      --bg: #f6f7f9;
+      --txt: #1f1f1f;
+      --muted: #6d6d6d;
+      --line: #e8e8e8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Barlow, sans-serif; background: var(--bg); color: var(--txt); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px 38px; }
+    .card {
+      background: #fff; border: 1px solid var(--line); border-radius: 14px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.08); overflow: hidden;
+    }
+    .head {
+      padding: 18px 20px;
+      background: linear-gradient(90deg, var(--or) 0%, var(--or2) 100%);
+      color: #fff;
+    }
+    .head h1 { font-family: "Barlow Condensed", sans-serif; font-size: 34px; text-transform: uppercase; line-height: 1; }
+    .head p { margin-top: 6px; font-size: 13px; opacity: .9; }
+    .body { padding: 18px; display: grid; gap: 14px; }
+    .group { border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+    .group h2 { font-family: "Barlow Condensed", sans-serif; font-size: 24px; text-transform: uppercase; margin-bottom: 8px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .field { margin-bottom: 10px; }
+    .field label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 700; margin-bottom: 5px; }
+    .field input[type="text"], .field input[type="url"], .field input[type="password"], .field textarea {
+      width: 100%; border: 1px solid #d8d8d8; border-radius: 8px; padding: 9px 10px; font: inherit; font-size: 14px;
+    }
+    .field textarea { min-height: 80px; resize: vertical; }
+    .switch { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-bottom: 8px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    button {
+      border: none; border-radius: 8px; padding: 10px 12px; font: inherit; font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .07em; cursor: pointer;
+    }
+    .btn-main { background: var(--or); color: #fff; }
+    .btn-main:hover { background: var(--or2); }
+    .btn-alt { background: #f3f3f3; color: #333; border: 1px solid #ddd; }
+    .msg { font-size: 13px; color: #2d8d58; display: none; }
+    .warn { font-size: 12px; color: #8a5b00; background: #fff6da; border: 1px solid #f3df9d; padding: 8px 10px; border-radius: 8px; }
+    #adminPanel { display: none; }
+    @media (max-width: 760px) { .row { grid-template-columns: 1fr; } .head h1 { font-size: 28px; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card" id="loginPanel">
+      <div class="head">
+        <h1>Admin caché</h1>
+        <p>Accès configuration du site</p>
+      </div>
+      <div class="body">
+        <div class="warn">Accès local uniquement. Pour une sécurité forte, prévoir un vrai backend auth.</div>
+        <div class="field">
+          <label>Mot de passe admin</label>
+          <input type="password" id="adminPassword" placeholder="Entrer le mot de passe">
+        </div>
+        <div class="actions">
+          <button class="btn-main" id="loginBtn" type="button">Se connecter</button>
+          <a class="btn-alt" href="../index.html" style="text-decoration:none;display:inline-flex;align-items:center;">Retour site</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="adminPanel">
+      <div class="head">
+        <h1>Configuration site</h1>
+        <p>Réglages dynamiques sans modifier le code</p>
+      </div>
+      <div class="body">
+        <div class="group">
+          <h2>Général</h2>
+          <label class="switch"><input type="checkbox" id="showCareersLink"> Afficher le lien "Carrières" dans le footer</label>
+        </div>
+
+        <div class="group">
+          <h2>GitHub (publication globale)</h2>
+          <div class="warn">Pour publier pour tous les visiteurs: renseigne un token GitHub avec droit "Contents: Read and write".</div>
+          <div class="row">
+            <div class="field">
+              <label>Owner</label>
+              <input type="text" id="ghOwner" value="Alex-btht">
+            </div>
+            <div class="field">
+              <label>Repository</label>
+              <input type="text" id="ghRepo" value="Alex-btht.github.io">
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>Branch</label>
+              <input type="text" id="ghBranch" value="main">
+            </div>
+            <div class="field">
+              <label>Chemin config</label>
+              <input type="text" id="ghPath" value="site-config.json">
+            </div>
+          </div>
+          <div class="field">
+            <label>Token GitHub (non stocké)</label>
+            <input type="password" id="ghToken" placeholder="ghp_xxxxx">
+          </div>
+          <div class="actions">
+            <button class="btn-alt" id="loadRemoteBtn" type="button">Charger config distante</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Pop-up événement</h2>
+          <label class="switch"><input type="checkbox" id="eventEnabled"> Activer le pop-up événement</label>
+          <label class="switch"><input type="checkbox" id="eventOnce"> Afficher une seule fois par session</label>
+          <div class="row">
+            <div class="field">
+              <label>Titre</label>
+              <input type="text" id="eventTitle">
+            </div>
+            <div class="field">
+              <label>Texte bouton</label>
+              <input type="text" id="eventCtaText">
+            </div>
+          </div>
+          <div class="field">
+            <label>Sous-titre</label>
+            <textarea id="eventSubtitle"></textarea>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>Lien bouton</label>
+              <input type="url" id="eventCtaHref" placeholder="https://...">
+            </div>
+            <div class="field">
+              <label>Image URL (ex: images/events/salon-banner.png)</label>
+              <input type="text" id="eventImageUrl">
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-main" id="saveBtn" type="button">Enregistrer et publier</button>
+          <button class="btn-alt" id="resetBtn" type="button">Réinitialiser</button>
+          <a class="btn-alt" href="../index.html" style="text-decoration:none;display:inline-flex;align-items:center;">Voir le site</a>
+        </div>
+        <div class="msg" id="msgOk">Configuration enregistrée.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../site-config.js"></script>
+  <script>
+    const ADMIN_PASSWORD = "fairino-admin-2026";
+    const LOGIN_KEY = "fairino_admin_ok_v1";
+
+    const loginPanel = document.getElementById("loginPanel");
+    const adminPanel = document.getElementById("adminPanel");
+    const passwordInput = document.getElementById("adminPassword");
+    const loginBtn = document.getElementById("loginBtn");
+    const msgOk = document.getElementById("msgOk");
+
+    const fields = {
+      ghOwner: document.getElementById("ghOwner"),
+      ghRepo: document.getElementById("ghRepo"),
+      ghBranch: document.getElementById("ghBranch"),
+      ghPath: document.getElementById("ghPath"),
+      ghToken: document.getElementById("ghToken"),
+      showCareersLink: document.getElementById("showCareersLink"),
+      eventEnabled: document.getElementById("eventEnabled"),
+      eventOnce: document.getElementById("eventOnce"),
+      eventTitle: document.getElementById("eventTitle"),
+      eventSubtitle: document.getElementById("eventSubtitle"),
+      eventCtaText: document.getElementById("eventCtaText"),
+      eventCtaHref: document.getElementById("eventCtaHref"),
+      eventImageUrl: document.getElementById("eventImageUrl")
+    };
+
+    function ghApiBase() {
+      const owner = fields.ghOwner.value.trim();
+      const repo = fields.ghRepo.value.trim();
+      const branch = fields.ghBranch.value.trim();
+      const path = fields.ghPath.value.trim();
+      return { owner, repo, branch, path };
+    }
+
+    function showAdmin(yes) {
+      loginPanel.style.display = yes ? "none" : "block";
+      adminPanel.style.display = yes ? "block" : "none";
+    }
+
+    function fillFormFromConfig(cfg) {
+      fields.showCareersLink.checked = !!cfg.showCareersLink;
+      fields.eventEnabled.checked = !!cfg.eventPopup.enabled;
+      fields.eventOnce.checked = !!cfg.eventPopup.showOnlyOncePerSession;
+      fields.eventTitle.value = cfg.eventPopup.title || "";
+      fields.eventSubtitle.value = cfg.eventPopup.subtitle || "";
+      fields.eventCtaText.value = cfg.eventPopup.ctaText || "";
+      fields.eventCtaHref.value = cfg.eventPopup.ctaHref || "";
+      fields.eventImageUrl.value = cfg.eventPopup.imageUrl || "";
+    }
+
+    function collectConfigFromForm() {
+      return {
+        showCareersLink: fields.showCareersLink.checked,
+        eventPopup: {
+          enabled: fields.eventEnabled.checked,
+          showOnlyOncePerSession: fields.eventOnce.checked,
+          title: fields.eventTitle.value.trim(),
+          subtitle: fields.eventSubtitle.value.trim(),
+          ctaText: fields.eventCtaText.value.trim(),
+          ctaHref: fields.eventCtaHref.value.trim(),
+          imageUrl: fields.eventImageUrl.value.trim()
+        }
+      };
+    }
+
+    function utf8ToBase64(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+
+    async function loadRemoteConfig() {
+      const { owner, repo, branch, path } = ghApiBase();
+      const url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}?t=${Date.now()}`;
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error("Impossible de charger la config distante.");
+      return res.json();
+    }
+
+    async function saveRemoteConfig(config) {
+      const token = fields.ghToken.value.trim();
+      if (!token) throw new Error("Token GitHub requis pour publier.");
+
+      const { owner, repo, branch, path } = ghApiBase();
+      const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+      const authHeaders = {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/vnd.github+json"
+      };
+
+      let sha = null;
+      const current = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, { headers: authHeaders });
+      if (current.ok) {
+        const currentJson = await current.json();
+        sha = currentJson.sha || null;
+      } else if (current.status !== 404) {
+        throw new Error("Lecture GitHub impossible. Vérifie owner/repo/branch/path/token.");
+      }
+
+      const body = {
+        message: "Update site-config from /admin",
+        content: utf8ToBase64(JSON.stringify(config, null, 2)),
+        branch
+      };
+      if (sha) body.sha = sha;
+
+      const saveRes = await fetch(apiUrl, {
+        method: "PUT",
+        headers: { ...authHeaders, "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      if (!saveRes.ok) {
+        const errText = await saveRes.text().catch(() => "");
+        throw new Error(`Publication GitHub échouée (${saveRes.status}). ${errText}`);
+      }
+    }
+
+    function showSaved() {
+      msgOk.style.display = "block";
+      setTimeout(() => { msgOk.style.display = "none"; }, 1800);
+    }
+
+    loginBtn.addEventListener("click", () => {
+      if (passwordInput.value === ADMIN_PASSWORD) {
+        localStorage.setItem(LOGIN_KEY, "1");
+        showAdmin(true);
+        window.siteConfigReady.then((cfg) => fillFormFromConfig(cfg));
+      } else {
+        alert("Mot de passe incorrect.");
+      }
+    });
+
+    passwordInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") loginBtn.click();
+    });
+
+    document.getElementById("loadRemoteBtn").addEventListener("click", async () => {
+      try {
+        const cfg = await loadRemoteConfig();
+        fillFormFromConfig(cfg);
+        showSaved();
+      } catch (e) {
+        alert(e.message || "Erreur de chargement distant.");
+      }
+    });
+
+    document.getElementById("saveBtn").addEventListener("click", async () => {
+      try {
+        const cfg = collectConfigFromForm();
+        await saveRemoteConfig(cfg);
+        showSaved();
+        alert("Configuration publiée sur GitHub. Le site sera mis à jour après redéploiement GitHub Pages.");
+      } catch (e) {
+        alert(e.message || "Erreur de publication GitHub.");
+      }
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (!confirm("Réinitialiser la configuration aux valeurs par défaut ?")) return;
+      fillFormFromConfig(window.FAIRINO_SITE_CONFIG_DEFAULTS);
+      showSaved();
+    });
+
+    if (localStorage.getItem(LOGIN_KEY) === "1") {
+      showAdmin(true);
+      window.siteConfigReady.then((cfg) => fillFormFromConfig(cfg));
+    }
+  </script>
+</body>
+</html>

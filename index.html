@@ -1395,6 +1395,7 @@ footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); padd
 </div>
 
 <!-- ════════════ JAVASCRIPT ════════════ -->
+<script src="site-config.js"></script>
 <script>
 // ── NAV scroll
 window.addEventListener('scroll', () => {
@@ -1487,15 +1488,10 @@ function initEventBanner() {
   if (!popup || !popupBox || !closeBtn || !title || !subtitle || !cta || !mediaWrap || !mediaImg) return;
 
   // Active/desactive le pop-up salon ici.
-  const EVENT_BANNER = {
-    enabled: true,
-    showOnlyOncePerSession: true,
-    title: 'FAIRINO France au salon Global Industrie',
-    subtitle: 'Retrouvez-nous sur notre stand pour des demos cobot en direct.',
-    ctaText: 'Voir les infos',
-    ctaHref: 'https://www.global-industrie.com/',
-    imageUrl: 'images/events/salon-banner.png'
-  };
+  const cfg = (typeof window.getSiteConfig === 'function')
+    ? window.getSiteConfig()
+    : { eventPopup: { enabled: false, showOnlyOncePerSession: true, title: '', subtitle: '', ctaText: '', ctaHref: '#', imageUrl: '' } };
+  const EVENT_BANNER = cfg.eventPopup || {};
 
   const closePopup = () => {
     popup.classList.remove('show');
@@ -1530,10 +1526,10 @@ function initEventBanner() {
     sessionStorage.setItem('fairino_event_popup_seen', '1');
   }
 
-  closeBtn.addEventListener('click', closePopup);
-  popup.addEventListener('click', (e) => {
+  closeBtn.onclick = closePopup;
+  popup.onclick = (e) => {
     if (e.target === popup) closePopup();
-  });
+  };
 }
 
 function initCareersToggle() {
@@ -1541,7 +1537,10 @@ function initCareersToggle() {
   if (!item) return;
 
   // Passe a true quand tu veux afficher le lien Carrières dans le footer.
-  const SHOW_CAREERS = false;
+  const cfg = (typeof window.getSiteConfig === 'function')
+    ? window.getSiteConfig()
+    : { showCareersLink: false };
+  const SHOW_CAREERS = !!cfg.showCareersLink;
   item.style.display = SHOW_CAREERS ? 'list-item' : 'none';
 }
 
@@ -1567,6 +1566,10 @@ const revealObs = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 initEventBanner();
 initCareersToggle();
+window.addEventListener('fairino:site-config-ready', () => {
+  initEventBanner();
+  initCareersToggle();
+});
 </script>
 
 <script src="cookie-consent.js"></script>
